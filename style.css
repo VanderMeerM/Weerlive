@@ -1,0 +1,342 @@
+
+
+body {
+    max-height: 1100px;
+    max-width: 1450px;
+    background-color: #a39080;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr 1fr 1fr 1fr 150px;
+    grid-template-rows:  80px 80 px 1fr 100px 100px 50px 100px 50px;
+    grid-template-areas: ".  . . kompas . . ."
+                        ".  . input input input moon ."
+                        ".  . location location location . ."
+                        ". map  . temperatuur . arrow ."
+                        ". regenzon . image . . ."
+                        ". weer weer weer weer weer ."
+                        ". . button button button . ."
+                        ". morgen morgen . overmorgen overmorgen . "
+                        ". . . about . . ."
+                     			
+}
+
+body input {
+    padding-left: 10px;
+    width: 250px;
+    height: 30px;
+    font-style: italic;
+}
+
+#temperatuur, #weer, 
+#morgen, #overmorgen, 
+#regenzon, #input, #location, 
+#winds, #about {
+    grid-area: weer;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    font-family: 'Comic Neue', cursive;
+    line-height: 30px;
+    margin: auto;
+    text-align: center;
+    }
+
+    #winds {
+        grid-area: arrow;
+            }
+
+   #moon {
+      display: none;
+       grid-area: moon;
+   }      
+
+#input, #location {
+    grid-area: input;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+#location {
+    grid-area: location;
+   
+}
+
+#kompas {
+    grid-area: kompas;
+    margin: auto;
+   
+}
+
+#temperatuur {
+    grid-area: temperatuur; 
+    border: 1px #ffffff solid;
+    padding: 20px 20px 0px;
+   }
+
+#temperatuur p {
+    margin: 20px 0;
+}
+
+#arrow {
+    grid-area: arrow;
+    /*visibility: hidden;*/
+    color: white;
+    margin: auto;
+    max-width: 100px;
+    max-height: 50px;
+    background-color: null;
+}
+    
+ #map {
+       grid-area: map;
+       filter: grayscale(100%);
+        height: 300px; 
+        width: 300px; 
+      }
+    
+ #image  {
+  grid-area: image;
+  transform: scale(1.5);
+  margin: auto;
+   }
+
+ button {
+    height: 40px;
+    width: 150px;
+    background-color: green;
+    color: white; 
+    margin: auto 20px;
+    }
+   
+#button {
+    display: inline;
+    grid-area: button;
+    text-align: center;
+    }
+
+.font {
+    font-size: large;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.hidden {
+   visibility: hidden;
+}
+
+#morgen {
+    display: inline;
+    grid-area: morgen;
+}
+  
+#overmorgen {
+    grid-area: overmorgen;
+}
+     
+ #about {
+    grid-area: about;
+    margin-top: 40px;
+    text-decoration: none;
+}
+
+#regenzon {
+    grid-area: regenzon;
+    text-align: left;
+  
+  }
+ 
+ #overlay {
+    position: fixed;
+    display: none;
+    width: 80%;
+    height: 90%;
+    /*bottom: 10%;
+      
+    left: 50%;
+    top: 50%;*/
+    right: 10%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 2;
+    cursor: pointer;
+  }
+  
+  #text{
+    position: absolute;
+    /*background-image: url('./pics/artikel_aankondiging_small.png');*/
+    top: 45%;
+    left: 50%;
+    font-family: 'Comic Neue', cursive;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+  }
+
+  @media (max-width: 1800px) {
+
+            #doc2 {
+                display: none; 
+                }
+        }
+
+   @media (max-width: 1550px) {
+
+    #overlay {
+       width: 100%;
+        height: 100%;
+         }
+         #doc2 {
+                display: none; 
+                }
+        }
+        
+ @media (max-width: 1400px) {
+
+        #map {
+          height: 250px; 
+          width: 250px; ;
+              }
+              
+            }
+
+ 
+  @media (max-width: 1000px) {
+
+       #map {
+           height: 150px; 
+           width: 150px; ;
+            }
+
+        #text{
+            font-size: small;
+             top: 50%;
+             left: 55%;
+            }
+
+           #text img {
+            padding-right: 10px;
+             }  
+
+             #doc1 {
+                display: none; 
+                }
+            }
+
+@media (max-width: 750px) {
+    body {
+       /* background-image: url("./pics/Europa.png"); */
+        background-repeat: repeat-y;
+        display: grid;
+        grid-template-columns: 20px 1fr 100px;
+        grid-template-rows:  50px 50px 80px 50px 1fr 150px 1fr 100px 1fr 1fr 20px;
+        grid-template-areas: ". kompas ."
+                             ". input ."
+                             ". location ."
+                             ". image ."
+                            ". temperatuur regenzon"
+                            ". arrow ."
+                            ". weer ."
+                            ". button . "
+                            ". morgen ."
+                            ". overmorgen ."
+                            ". about ."
+       
+                            
+    }
+    
+    #temperatuur, #input {
+    text-align: left;
+    margin-left: 20px;
+        }
+
+    #input {
+           margin-bottom: 10px;
+          }
+
+    #location {
+            margin: 0 10px;
+        }
+
+    #image {
+        margin-left: 85px;
+    }
+
+    #regenzon {
+        grid-area: temperatuur;
+        margin-left: 200px;
+    }
+
+
+    #arrow {
+    float: left;
+    margin: auto;
+    max-width: 200px;
+    max-height: 100px;
+   }
+
+   #weer {
+    font-size: normal;
+    text-align: left;
+    max-width: 700px;
+    word-wrap: break-word;
+}
+
+#button {
+    text-align: left;
+}
+
+button {
+    margin-top: 10px;
+    height: 40px;
+    width: 100px;
+    }
+
+    #morgen, #overmorgen {
+    font-size: normal;
+    text-align: left;
+    margin: auto 0;
+    }
+
+    #overlay {
+        position: fixed;
+        margin: 0 auto;
+        display: none;
+        width: 100%;
+        height: 100%;
+        bottom: 0%; 
+        top: 0%;
+    }
+            
+     #text{
+       position: absolute;
+       font-size: normal;
+        top: 75%;
+        left: 55%;
+        transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+      }
+
+      #text img {
+         visibility: hidden;
+      }
+
+      #about{
+        margin-top: 0px;
+        }
+
+   #map {
+          width: 0px;
+          height: 0px;
+         }
+      
+    }
+
+@media (min-width: 550px) {
+    #text {
+        font-size: large;
+    }
+}
+
+       

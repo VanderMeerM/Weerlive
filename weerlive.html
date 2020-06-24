@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcels weersite</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&display=swap" rel="stylesheet">
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5LFmho3OVVZ4pUMfgo8jy0pEHIF9Uib0"></script>
+
+  <script defer type="text/javascript" src="./JS/weerlive.js"></script>
+  <script defer type="text/javascript" src="./JS/moon.js"></script>
+  <script defer type="text/javascript" src="./JS/variables.js"></script>
+  <script defer type="text/javascript" src="./JS/getWeatherByInput.js"></script>
+</head>
+
+<body>
+
+  <img id="kompas" onclick="getWeatherByLocation()" src='./pics/kompas.png'>
+     
+     <div id="input">
+       <input id="plaats" placeholder="Voer een Nederlandse plaats in...">
+   </div>
+
+  <div id="location"></div>
+
+  <div id="moon"></div>
+
+  <div id="regenzon"> </div>
+  
+  <div id="temperatuur"></div>
+  <p></p>
+
+  <div id="weer"> </div>
+  <div id="image"> </div>
+
+  <div id="arrow"> </div>
+  <div id="winds"> </div>
+
+  <div id="map"></div>
+
+  <div id="button"></div>
+  <div id="morgen"></div>
+  <div id="overmorgen"> </div>
+
+  <div id="about"> Over deze site </div>
+  <div id="overlay" onclick="off()">
+    <div id="text">
+      Deze weersite draag ik op aan mijn vader. <p>
+        Als kind was ik al geobsedeerd door de apparaten (met diens geluiden) die in een donkere kamer op zolder
+        stonden. Met
+        daarbij nog een grote schotelantenne in de tuin kon hij de satellietfoto 'downloaden' en ontwikkelen. De
+        achtergrond van deze website toont zo'n foto die op 14 november 1980 door een
+        NOAA-weersatelliet is gemaakt. Mijn vader haalde met zijn hobby op 17 september 1988 zelfs
+        <a style="color:white;" href="./pics/krantartikel.png"> de regionale krant (De Limburger).</a>
+
+        Met eveneens Jan als voornaam hadden we onze eigen (legendarische) weerman Pelleboer in Ulestraten!
+      <p>
+        Vandaag de dag ontvang ik de meteogegevens middels een API van <a style="color:white;"
+          href="https://weerlive.nl/index.php" target="_blank">weerlive.nl</a> en verwerk ik ze in deze site. <br>De
+        creatieve uitdaging vind ik de 'droge
+        kost' aan informatie visueel te verwerken. Zo is de pijl na het achterhalen van de locatie ergens in
+        Nederland
+        in de opgegeven windrichting gedraaid en beweegt die vijf keer met een snelheid, afhankelijk van de
+        windkracht, in die richting.
+        Daarnaast wordt de achtergrondfoto donkerder getoond, zodra de zon is ondergegaan.
+      <p>
+        Negentien jaar na zijn dood (in 2001) houd ik op deze manier een mooie herinnering aan hem online.
+      <p>
+
+
+        <img id="doc2" src='./pics/Docu_2.png'>
+        <img id="doc1" src='./pics/Docu_1.png'>
+        <img src='./pics//artikel_aankondiging.png'>
+
+
+    </div>
+  </div>
+
+</body>
+
+</html>
