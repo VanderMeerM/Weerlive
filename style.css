@@ -246,7 +246,7 @@ body input {
                             
     }
     
-    #temperatuur, #input {
+    #temperatuur, #input, #location {
     text-align: left;
     margin-left: 20px;
         }

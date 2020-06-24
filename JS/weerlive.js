@@ -16,9 +16,9 @@ async function getWeatherByLocation() {
         console.log("Geolocatie wordt niet ondersteund door de browser.");
     }
 
-// Request an API-key on http://weerlive.nl/api/toegang/index.php
+
     async function showPosition(position) {
-        let apiUrl = `https://weerlive.nl/api/json-data-10min.php?key=<Api-key>&locatie=${position.coords.latitude},${position.coords.longitude}`;
+        let apiUrl = `https://weerlive.nl/api/json-data-10min.php?key=6303eaaa84&locatie=${position.coords.latitude},${position.coords.longitude}`;
        
         try {
             const res = await fetch(apiUrl, { method: 'GET' });

@@ -2,15 +2,15 @@
 
 async function getWeatherByInput() {
 
-    // Request an API-key on http://weerlive.nl/api/toegang/index.php
-    let apiUrl = `https://weerlive.nl/api/json-data-10min.php?key=<Apikey>&locatie=${plaats.value}`;
+    
+    let apiUrl = `https://weerlive.nl/api/json-data-10min.php?key=6303eaaa84&locatie=${plaats.value}`;
     try {
         const res = await fetch(apiUrl, { method: 'GET' });
         const data = await res.json();
 
        document.getElementById('map').style.visibility = "hidden";
 
-        document.getElementById('location').innerHTML = `Het weer in <br>${data.liveweer[0].plaats}
+        document.getElementById('location').innerHTML = `Het weer in <span style='text-decoration: underline;'>${data.liveweer[0].plaats}
         `
 
         document.getElementById('regenzon').
