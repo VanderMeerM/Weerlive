@@ -5,31 +5,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marcels weersite</title>
-  <link rel="shortcut icon" href="./pics/favicon.ico">
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&display=swap" rel="stylesheet">
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5LFmho3OVVZ4pUMfgo8jy0pEHIF9Uib0"></script>
+  <link rel="shortcut icon" href="./weerlive/pics/favicon.ico">
+  <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
 
-  <script defer type="text/javascript" src="./JS/weerlive.js"></script>
-  <script defer type="text/javascript" src="./JS/moon.js"></script>
-  <script defer type="text/javascript" src="./JS/variables.js"></script>
-  <script defer type="text/javascript" src="./JS/getWeatherByInput.js"></script>
+  <link rel="stylesheet" href="weerlive/style.css">
+  <link rel="stylesheet" href="weerlive/style_rain.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&display=swap" rel="stylesheet">
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5LFmho3OVVZ4pUMfgo8jy0pEHIF9Uib0"></script>
+
+  <script defer type="text/javascript" src="./weerlive/JS/weerlive.js"></script>
+  <script defer type="text/javascript" src="./weerlive/JS/neerslag.js"></script>
+
+  <script defer type="text/javascript" src="./weerlive/JS/moon.js"></script>
+  <script defer type="text/javascript" src="./weerlive/JS/variables.js"></script>
+  <script defer type="text/javascript" src="./weerlive/JS/getWeatherByInput.js"></script>
 </head>
 
-<body>
+<body class="back-row-toggle splat-toggle">
+  <div class="rain front-row"></div>
+  <div class="rain back-row"></div>
+  <div class="toggles"></div>
+  </div>
 
-  <img id="kompas" onclick="getWeatherByLocation()" src='./pics/kompas.png'>
-     
-     <div id="input">
-       <input id="plaats" placeholder="Voer een Nederlandse plaats in...">
-   </div>
+  <audio id="rainsound">
+    <source src="./weerlive/rain.mp3" type="audio/mpeg">
+  </audio>
+
+  <img id="kompas" onclick="getWeatherByLocation()" src='./weerlive/pics/kompas.png'>
+
+  <div id="input">
+    <input id="plaats" placeholder="Voer een Nederlandse plaats in...">
+  </div>
 
   <div id="location"></div>
 
   <div id="moon"></div>
 
   <div id="regenzon"> </div>
-  
+
   <div id="temperatuur"></div>
   <p></p>
 
@@ -54,9 +69,9 @@
         daarbij nog een grote schotelantenne in de tuin kon hij de satellietfoto 'downloaden' en ontwikkelen. De
         achtergrond van deze website toont zo'n foto die op 14 november 1980 door een
         NOAA-weersatelliet is gemaakt. Mijn vader haalde met zijn hobby op 17 september 1988 zelfs
-        <a style="color:white;" href="./pics/krantartikel.png"> de regionale krant (De Limburger).</a>
+        <a style="color:white;" href="./weerlive/pics/krantartikel.png"> de regionale krant (De Limburger).</a>
 
-        Met eveneens Jan als voornaam hadden we onze eigen (legendarische) weerman Pelleboer in Ulestraten!
+        <div id="addition">Met eveneens Jan als voornaam hadden we onze eigen (legendarische) weerman Pelleboer in Ulestraten!</p></div>
       <p>
         Vandaag de dag ontvang ik de meteogegevens middels een API van <a style="color:white;"
           href="https://weerlive.nl/index.php" target="_blank">weerlive.nl</a> en verwerk ik ze in deze site. <br>De
@@ -65,15 +80,15 @@
         Nederland
         in de opgegeven windrichting gedraaid en beweegt die vijf keer met een snelheid, afhankelijk van de
         windkracht, in die richting.
-        Daarnaast wordt de achtergrondfoto donkerder getoond, zodra de zon is ondergegaan.
-      <p>
+        Daarnaast wordt de achtergrondfoto donkerder getoond, zodra de zon is ondergegaan en wordt de maan zichtbaar.
+        Bij regen zijn druppels zichtbaar en is geluid hoorbaar (toegegeven: de twee laatste functionaliteiten heb ik niet zelf verzonnen).        <p>
         Negentien jaar na zijn dood (in 2001) houd ik op deze manier een mooie herinnering aan hem online.
       <p>
 
 
-        <img id="doc2" src='./pics/Docu_2.png'>
-        <img id="doc1" src='./pics/Docu_1.png'>
-        <img src='./pics//artikel_aankondiging.png'>
+        <img id="doc2" src='./weerlive/pics/Docu_2.png'>
+        <img id="doc1" src='./weerlive/pics/Docu_1.png'>
+        <img src='./weerlive/pics/artikel_aankondiging.png'>
 
 
     </div>

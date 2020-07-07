@@ -1,23 +1,22 @@
 
 
 async function getWeatherByInput() {
+document.getElementById('moon').style.display = "none"; 
+document.getElementById('map').style.visibility = "hidden";
 
-    
-    let apiUrl = `https://weerlive.nl/api/json-data-10min.php?key=6303eaaa84&locatie=${plaats.value}`;
+ // register key at http://weerlive.nl/api/toegang/index.php
+    let apiUrl = `https://weerlive.nl/api/json-data-10min.php?key=<key>&locatie=${plaats.value}`;
     try {
         const res = await fetch(apiUrl, { method: 'GET' });
         const data = await res.json();
-
-       document.getElementById('map').style.visibility = "hidden";
-
+        
         document.getElementById('location').innerHTML = `Het weer in <span style='text-decoration: underline;'>${data.liveweer[0].plaats}
         `
-
         document.getElementById('regenzon').
-            innerHTML = `<img src='pics/regen.png'> ${data.liveweer[0].d0neerslag}% <br>
-            <img src='pics/zon.png'> ${data.liveweer[0].d0zon}% <br>
-            <img src='pics/sunrise1.png'> ${data.liveweer[0].sup} <br>
-            <img src='pics/sunset1.png'> ${data.liveweer[0].sunder}`;
+            innerHTML = `<img src='weerlive/pics/regen.png'> ${data.liveweer[0].d0neerslag}% <br>
+            <img src='weerlive/pics/zon.png'> ${data.liveweer[0].d0zon}% <br>
+            <img src='weerlive/pics/sunrise1.png'> ${data.liveweer[0].sup} <br>
+            <img src='weerlive/pics/sunset1.png'> ${data.liveweer[0].sunder}`;
 
         function weatherToday() {
 
@@ -32,7 +31,23 @@ async function getWeatherByInput() {
                 image.removeChild(image.firstChild);
             }
             image.appendChild(img);
-            img.src = `iconen-weerlive-wit/${data.liveweer[0].image}.png`
+            img.src = `weerlive/iconen-weerlive-wit/${data.liveweer[0].image}.png`
+
+            switch (data.liveweer[0].image) {
+                case "regen":
+                case "buien":
+                    {
+                        letItRain();
+                    }
+                    break;
+
+                case "sneeuw":
+                    {
+                       //  snowStorm;
+                       console.log("Het sneeuwt!");
+                    }
+                    break;
+            }
 
             img.addEventListener("click", getWeatherByLocation);
 
@@ -47,37 +62,62 @@ async function getWeatherByInput() {
 
 
             const buttonForeCast = document.createElement("button");
-            buttonForeCast.innerHTML = 'Toon vooruitzichten';
-            buttonForeCast.onclick = () => {
-                weatherTomorrow(), weatherDayAfterTomorrow()
+                buttonForeCast.innerHTML = 'Toon vooruitzichten'
+                buttonForeCast.onclick = () => {
+                    weatherTomorrow(), weatherDayAfterTomorrow()
 
-                document.getElementById('morgen').classList.toggle('hidden');
-                document.getElementById('overmorgen').classList.toggle('hidden');
+                    switch (buttonForeCast.innerHTML) {
+                        case "Toon vooruitzichten": {
 
-                if (tomorrow.className != 'hidden' && dayAfterTomorrow.className != 'hidden') {
-                    buttonForeCast.innerHTML = 'Verberg vooruitzichten'
+                    document.getElementById('morgen').style.visibility= "visible";
+                    document.getElementById('overmorgen').style.visibility= "visible";
+                    buttonForeCast.innerHTML = 'Verberg vooruitzichten';
+                    buttonMoreDetails.innerHTML = 'Meer gegevens';
+                    } 
+                    break;
+
+                    case "Verberg vooruitzichten": {
+                      document.getElementById('morgen').style.visibility= "hidden";
+                      document.getElementById('overmorgen').style.visibility= "hidden";
+                      buttonForeCast.innerHTML = 'Toon vooruitzichten';
+                      buttonMoreDetails.innerHTML = 'Meer gegevens';
+
+                    }
+                    break;
                 }
-                else { buttonForeCast.innerHTML = 'Toon vooruitzichten' };
-            };
+                };
 
-            button.appendChild(buttonForeCast);
+                button.appendChild(buttonForeCast);
 
-            const buttonMoreDetails = document.createElement("button");
-            buttonMoreDetails.innerHTML = 'Meer gegevens';
-            buttonMoreDetails.onclick = () => {
-                showMoreDetails()
-                document.getElementById('morgen').classList.toggle('hidden');
-                document.getElementById('overmorgen').classList.toggle('hidden');
+                const buttonMoreDetails = document.createElement("button");
+                buttonMoreDetails.innerHTML = 'Meer gegevens';
+                buttonMoreDetails.onclick = () => {
+                    showMoreDetails()
 
-                if (tomorrow.className != 'hidden') { buttonMoreDetails.innerHTML = 'Verberg gegevens' }
-                else { buttonMoreDetails.innerHTML = 'Meer gegevens' };
-            };
+                    switch (buttonMoreDetails.innerHTML) {
+                        case "Meer gegevens": {
 
+                   document.getElementById('morgen').style.visibility= "visible";
+                   document.getElementById('overmorgen').style.visibility= "visible";
+                   buttonMoreDetails.innerHTML = 'Verberg gegevens';
+                   buttonForeCast.innerHTML = 'Toon vooruitzichten';
+                    } 
+                    break;
+
+                    case "Verberg gegevens": {
+                        document.getElementById('morgen').style.visibility= "hidden";
+                        document.getElementById('overmorgen').style.visibility= "hidden";
+                        buttonMoreDetails.innerHTML = 'Meer gegevens';
+
+                    }
+                    break;
+                }
+                };
 
             function showMoreDetails() {
 
                 tomorrow.innerHTML =
-                    ` <img src='pics/wind_icon_w.png'> ${data.liveweer[0].winds} Bft, 
+                    ` <img src='weerlive/pics/wind_icon_w.png'> ${data.liveweer[0].winds} Bft, 
                                 ${data.liveweer[0].windkmh} km/u <br>
                                 Weersgesteldheid: ${data.liveweer[0].samenv} <br>
                                 Luchtdruk: ${data.liveweer[0].luchtd} hPa `
@@ -94,29 +134,27 @@ async function getWeatherByInput() {
         }
 
         weatherToday();
-        
-        //console.log(navigator.platform);
 
-        function weatherTomorrow() {
+         function weatherTomorrow() {
             tomorrow.innerHTML = `<span style='text-decoration: underline;'>Morgen (${oDLSplit.split('-')[0]}-${oDLSplit.split('-')[1]}):</span> <br>
-               <img src= 'iconen-weerlive-wit/${data.liveweer[0].d1weer}.png'<p><br>
+               <img src= 'weerlive/iconen-weerlive-wit/${data.liveweer[0].d1weer}.png'<p><br>
                 <font size="5"> ${data.liveweer[0].d1tmin} / ${data.liveweer[0].d1tmax} ºC <br>
                 <font size="4">
-                 <img src='pics/wind_icon_w.png'> ${data.liveweer[0].d1windr}, ${data.liveweer[0].d1windk} Bft<br>
-                 <img src='pics/regen.png'> ${data.liveweer[0].d1neerslag}%,
-                  <img src='pics/zon.png'> ${data.liveweer[0].d1zon}%`;
+                 <img src='weerlive/pics/wind_icon_w.png'> ${data.liveweer[0].d1windr}, ${data.liveweer[0].d1windk} Bft<br>
+                 <img src='weerlive/pics/regen.png'> ${data.liveweer[0].d1neerslag}%,
+                  <img src='weerlive/pics/zon.png'> ${data.liveweer[0].d1zon}%`;
 
         }
 
         function weatherDayAfterTomorrow() {
 
             dayAfterTomorrow.innerHTML = `<span style='text-decoration: underline;'>Overmorgen (${tDLSplit.split('-')[0]}-${tDLSplit.split('-')[1]}):</span> <br>  
-                    <img src= 'iconen-weerlive-wit/${data.liveweer[0].d2weer}.png'<p><br>
+                    <img src= 'weerlive/iconen-weerlive-wit/${data.liveweer[0].d2weer}.png'<p><br>
                     <font size="5"> ${data.liveweer[0].d2tmin} / ${data.liveweer[0].d2tmax} ºC<br>
                     <font size="4"> 
-                    <img src='pics/wind_icon_w.png'> ${data.liveweer[0].d2windr}, ${data.liveweer[0].d2windk} Bft<br>
-                   <img src='pics/regen.png'> ${data.liveweer[0].d2neerslag}%
-                   <img src='pics/zon.png'> ${data.liveweer[0].d2zon}%`;
+                    <img src='weerlive/pics/wind_icon_w.png'> ${data.liveweer[0].d2windr}, ${data.liveweer[0].d2windk} Bft<br>
+                   <img src='weerlive/pics/regen.png'> ${data.liveweer[0].d2neerslag}%
+                   <img src='weerlive/pics/zon.png'> ${data.liveweer[0].d2zon}%`;
 
         }
 
@@ -129,25 +167,36 @@ async function getWeatherByInput() {
             let sunrise = new Date(year, month, date, hourSr, minuteSr);
             let sunset = new Date(year, month, date, hourSu, minuteSu);
 
-            function setDarkBackground() { 
-            document.body.style.backgroundImage = "url('./pics/Background/dark_background.png')";
-            document.getElementById('moon').style.display = "block" }
+            function setTwilightBackground15() {
+                document.body.style.backgroundImage = "url('./weerlive/pics/Background/Europa_dark15.png')";
+                document.getElementById('moon').style.display = "block"
+            }
+
+            function setTwilightBackground30() {
+                document.body.style.backgroundImage = "url('./weerlive/pics/Background/Europa_dark30.png')";
+                document.getElementById('moon').style.display = "block"
+            }
+
+            function setDarkBackground() {
+                document.body.style.backgroundImage = "url('./weerlive/pics/Background/dark_background.png')";
+                document.getElementById('moon').style.display = "block"
+            }
 
             (sunset.getTime() - currentTime.getTime()) <= 0 ||
                 sunrise.getTime() - currentTime.getTime() > 0 ?
-                setDarkBackground() :
-               
-                   (sunset.getTime() - currentTime.getTime()) < 900000 ||
-                    (currentTime.getTime() - sunrise.getTime()) < 900000 ?
-                    document.body.style.backgroundImage = "url('./pics/Background/Europa_dark15.png')" :
+                setTwilightBackground15() :
 
-                    (sunset.getTime() - currentTime.getTime()) < 1800000 ||
-                        (currentTime.getTime() - sunrise.getTime()) < 1800000 ?
-                        document.body.style.backgroundImage = "url('./pics/Background/Europa_dark30.png')" :
+                (sunset.getTime() - currentTime.getTime()) < -900000 ||
+                    (currentTime.getTime() - sunrise.getTime()) < -900000 ?
+                    setTwilightBackground30() :
 
-                        document.body.style.backgroundImage = "url('./pics/Background/Europa.png')"
-        
-                }
+                    (sunset.getTime() - currentTime.getTime()) < -1800000 ||
+                        (currentTime.getTime() - sunrise.getTime()) < -1800000 ?
+                        setDarkBackground() :
+
+                        document.body.style.backgroundImage = "url('./weerlive/pics/Background/Europa.png')"
+
+        }
         changeBackground();
 
 
@@ -162,7 +211,7 @@ async function getWeatherByInput() {
             else if (windspeed >= 11) {
                 ms = 150
             }
-           return ms;
+            return ms;
         }
 
         const deg = windDirection.find(
@@ -177,7 +226,7 @@ async function getWeatherByInput() {
             //Turns arrow into winddirection 
 
             document.getElementById('winds').innerHTML =
-                `<img src='pics/wind_icon_w.png'> <br>
+                `<img src='weerlive/pics/wind_icon_w.png'> <br>
                      <font size="4">${data.liveweer[0].winds} Bft`;
 
             let arrow = document.getElementById('arrow');
@@ -186,7 +235,7 @@ async function getWeatherByInput() {
             while (arrow.firstChild) {
                 arrow.removeChild(arrow.firstChild);
             }
-            img.src = "./pics/arrow.png";
+            img.src = "./weerlive/pics/arrow.png";
             img.style.webkitTransform = 'rotate(' + deg.deg + 'deg)';
             img.style.visibility = "visible";
             arrow.appendChild(img);
