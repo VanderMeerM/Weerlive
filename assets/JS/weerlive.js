@@ -18,7 +18,6 @@ async function getWeatherByLocation() {
         console.log("Geolocatie wordt niet ondersteund door de browser.");
     }
 
-    // register key at http://weerlive.nl/api/toegang/index.php
     async function showPosition(position) {
         let apiUrl = `https://weerlive.nl/api/json-data-10min.php?key=<key>&locatie=${position.coords.latitude},${position.coords.longitude}`;
 
@@ -68,7 +67,7 @@ async function getWeatherByLocation() {
                     image.removeChild(image.firstChild);
                 }
                 image.appendChild(img);
-                img.src = `weerlive/iconen-weerlive-wit/${data.liveweer[0].image}.png`
+                img.src = `./assets/iconen-weerlive-wit/${data.liveweer[0].image}.png`
 
 
                 switch (data.liveweer[0].image) {
@@ -154,7 +153,7 @@ async function getWeatherByLocation() {
                 function showMoreDetails() {
 
                     tomorrow.innerHTML =
-                        ` <img src='weerlive/pics/wind_icon_w.png'> ${data.liveweer[0].winds} Bft, 
+                        ` <img src='./assets/pics/wind_icon_w.png'> ${data.liveweer[0].winds} Bft, 
                                     ${data.liveweer[0].windkmh} km/u <br>
                                     Weersgesteldheid: ${data.liveweer[0].samenv} <br>
                                     Luchtdruk: ${data.liveweer[0].luchtd} hPa `
@@ -175,24 +174,24 @@ async function getWeatherByLocation() {
         
             function weatherTomorrow() {
                 tomorrow.innerHTML = `<span style='text-decoration: underline;'>Morgen (${oDLSplit.split('-')[0]}-${oDLSplit.split('-')[1]}):</span> <br>
-                   <img src= 'weerlive/iconen-weerlive-wit/${data.liveweer[0].d1weer}.png'<p><br>
+                   <img src= './assets/iconen-weerlive-wit/${data.liveweer[0].d1weer}.png'<p><br>
                     <font size="5"> ${data.liveweer[0].d1tmin} / ${data.liveweer[0].d1tmax} ºC <br>
                     <font size="4">
-                     <img src='weerlive/pics/wind_icon_w.png'> ${data.liveweer[0].d1windr}, ${data.liveweer[0].d1windk} Bft<br>
-                     <img src='weerlive/pics/regen.png'> ${data.liveweer[0].d1neerslag}%,
-                      <img src='weerlive/pics/zon.png'> ${data.liveweer[0].d1zon}%`;
+                     <img src='./assets/pics/wind_icon_w.png'> ${data.liveweer[0].d1windr}, ${data.liveweer[0].d1windk} Bft<br>
+                     <img src='./assetspics/regen.png'> ${data.liveweer[0].d1neerslag}%,
+                      <img src='./assetspics/zon.png'> ${data.liveweer[0].d1zon}%`;
 
             }
 
             function weatherDayAfterTomorrow() {
 
                 dayAfterTomorrow.innerHTML = `<span style='text-decoration: underline;'>Overmorgen (${tDLSplit.split('-')[0]}-${tDLSplit.split('-')[1]}):</span> <br>  
-                        <img src= 'weerlive/iconen-weerlive-wit/${data.liveweer[0].d2weer}.png'<p><br>
+                        <img src= './assets/iconen-weerlive-wit/${data.liveweer[0].d2weer}.png'<p><br>
                         <font size="5"> ${data.liveweer[0].d2tmin} / ${data.liveweer[0].d2tmax} ºC<br>
                         <font size="4"> 
-                        <img src='weerlive/pics/wind_icon_w.png'> ${data.liveweer[0].d2windr}, ${data.liveweer[0].d2windk} Bft<br>
-                       <img src='weerlive/pics/regen.png'> ${data.liveweer[0].d2neerslag}%
-                       <img src='weerlive/pics/zon.png'> ${data.liveweer[0].d2zon}%`;
+                        <img src='./assets/pics/wind_icon_w.png'> ${data.liveweer[0].d2windr}, ${data.liveweer[0].d2windk} Bft<br>
+                       <img src='./assets/pics/regen.png'> ${data.liveweer[0].d2neerslag}%
+                       <img src='./assets/pics/zon.png'> ${data.liveweer[0].d2zon}%`;
 
             }
 
@@ -206,17 +205,17 @@ async function getWeatherByLocation() {
                 let sunset = new Date(year, month, date, hourSu, minuteSu);
 
                 function setTwilightBackground15() {
-                    document.body.style.backgroundImage = "url('./weerlive/pics/Background/Europa_dark15.png')";
+                    document.body.style.backgroundImage = "url('.//assets/pics/Background/Europa_dark15.png')";
                     document.getElementById('moon').style.display = "block"
                 }
 
                 function setTwilightBackground30() {
-                    document.body.style.backgroundImage = "url('./weerlive/pics/Background/Europa_dark30.png')";
+                    document.body.style.backgroundImage = "url('./assets/pics/Background/Europa_dark30.png')";
                     document.getElementById('moon').style.display = "block"
                 }
 
                 function setDarkBackground() {
-                    document.body.style.backgroundImage = "url('./weerlive/pics/Background/dark_background.png')";
+                    document.body.style.backgroundImage = "url('./assets/pics/Background/dark_background.png')";
                     document.getElementById('moon').style.display = "block"
                 }
 
@@ -232,7 +231,7 @@ async function getWeatherByLocation() {
                             sunrise.getTime() - currentTime.getTime() > 0 ?
                             setTwilightBackground15() :
 
-                            document.body.style.backgroundImage = "url('./weerlive/pics/Background/Europa.png')"
+                            document.body.style.backgroundImage = "url('./assets/pics/Background/Europa.png')"
 
             }
             changeBackground();
@@ -265,7 +264,7 @@ async function getWeatherByLocation() {
                 //Turns arrow into winddirection 
 
                 document.getElementById('winds').innerHTML =
-                    `<img src='weerlive/pics/wind_icon_w.png'> <br>
+                    `<img src='./assets/pics/wind_icon_w.png'> <br>
                          <font size="4">${data.liveweer[0].winds} Bft`;
 
                 let arrow = document.getElementById('arrow');
@@ -274,7 +273,7 @@ async function getWeatherByLocation() {
                 while (arrow.firstChild) {
                     arrow.removeChild(arrow.firstChild);
                 }
-                img.src = "./weerlive/pics/arrow.png";
+                img.src = "./assets/pics/arrow.png";
                 img.style.webkitTransform = 'rotate(' + deg.deg + 'deg)';
                 img.style.visibility = "visible";
                 arrow.appendChild(img);

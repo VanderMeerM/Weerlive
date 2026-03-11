@@ -1,13 +1,33 @@
 
 
+.menubar {
+    background-color: rgb(11, 55, 175);
+    width: fit-content;
+    display: flex;
+
+}
+
+.day_forecast {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(110, 112, 209);
+    justify-content: center;
+    color: white;
+    height: fit-content;
+    width: fit-content;
+    padding: 2%;
+    line-height: 1.6;
+}
+
+
 body {
     max-height: 1100px;
     max-width: 1450px;
-    background-color: #a39080;
+    /* background-color: #a39080; */
     background-repeat: no-repeat;
     background-position: center;
     display: grid;
-    grid-template-columns: 200px 1fr 1fr 1fr 1fr 1fr 150px;
+    grid-template-columns: 400px 1fr 1fr 1fr 1fr 1fr 150px;
     grid-template-rows:  80px 80 px 1fr 100px 100px 50px 100px 50px;
     grid-template-areas: ".  . . kompas . . ."
                         ".  . input input input moon ."
