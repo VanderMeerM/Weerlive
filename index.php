@@ -67,12 +67,15 @@ for ($i=1; $i<5; $i++) {
     ' . $response['wk_verw'][$i]['min_temp'] . ' /  
     ' . $response['wk_verw'][$i]['max_temp'] . ' ºC' . '
     
-    <div>
-    ' . $response['wk_verw'][$i]['windrgr'] . ' ' . $response['wk_verw'][$i]['windbft'] . ' Bft' . // wind 
+    <div style="display: flex; align-items: center">
+   <img src="./assets/pics/arrow.png" style="transform: rotate('.($response['wk_verw'][$i]['windrgr']+90).'deg) scale(0.33)">' //wind 
+   
+    . $response['wk_verw'][$i]['windbft'] . ' Bft' . 
     '</div>
 
      <div>'  
      . $response['wk_verw'][$i]['neersl_perc_dag'] . '%' . // neerslagkans 
+
     '</div>
 
      <div>'  
