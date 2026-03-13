@@ -23,6 +23,8 @@
   <script defer type="text/javascript" src="./assets/JS/getWeatherByInput.js"></script>
 </head>
 
+<body>
+
 <?php
 
 require('./assets/api.php');
@@ -67,36 +69,42 @@ for ($i=1; $i<5; $i++) {
     ' . $response['wk_verw'][$i]['min_temp'] . ' /  
     ' . $response['wk_verw'][$i]['max_temp'] . ' ºC' . '
     
-    <div style="display: flex; align-items: center">
+    </div> 
+
+  <div style="margin: auto">
+
    <img src="./assets/pics/arrow.png" style="transform: rotate('.($response['wk_verw'][$i]['windrgr']+90).'deg) scale(0.33)">' //wind 
    
-    . $response['wk_verw'][$i]['windbft'] . ' Bft' . 
+   . $response['wk_verw'][$i]['windbft'] . ' Bft' . 
     '</div>
 
-     <div>'  
-     . $response['wk_verw'][$i]['neersl_perc_dag'] . '%' . // neerslagkans 
+  <div style="margin: auto">'  
+   . $response['wk_verw'][$i]['neersl_perc_dag'] . '%' . // neerslagkans 
 
-    '</div>
+  '</div>
 
-     <div>'  
-     . $response['wk_verw'][$i]['zond_perc_dag'] . '%' . // kans op zon 
-    '</div>
+  <div style="margin: auto">'  
+  . $response['wk_verw'][$i]['zond_perc_dag'] . '%' . // kans op zon 
+  '</div>
                 
-    </div>
-    </div>';
+  </div>';
 }
 
+echo '<div id="last_check"> Laatste controle: <br> ' . date('d-m-Y H:i' , $response['liveweer'][0]['timestamp']) . '</p>';
 
 echo $response['api'][0]['rest_verz'];
 
-echo '</div>';
+echo '
+</div>
+</div>';
 
 //print_r($response['wk_verw']);
 
 
-?>
+echo '<div class="main">
 
-<body class="back-row-toggle splat-toggle">
+
+  <div class="back-row-toggle splat-toggle">
   <div class="rain front-row"></div>
   <div class="rain back-row"></div>
   <div class="toggles"></div>
@@ -106,7 +114,7 @@ echo '</div>';
     <source src="./assets/rain.mp3" type="audio/mpeg">
   </audio>
 
-  <img id="kompas" onclick="getWeatherByLocation()" src='./assets/pics/kompas.png'>
+  <img id="kompas" onclick="getWeatherByLocation()" src="./assets/pics/kompas.png">
 
   <div id="input">
     <input id="plaats" placeholder="Voer een plaats in Nederland in...">
@@ -118,8 +126,7 @@ echo '</div>';
   </div>
 
   <div id="moon"></div>
-
-  <?php
+';
 
 echo 
 '<div id="regenzon"> ';
@@ -187,6 +194,7 @@ voelt aan als:</font><br>' . $response['liveweer'][0]['gtemp'] . ' ºC
 
     </div>
   </div>
+</div>
 
 </body>
 

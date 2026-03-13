@@ -1,10 +1,15 @@
 
 
-.menubar {
-    background-color: rgb(11, 55, 175);
-    width: fit-content;
-    display: flex;
+body {
+      max-height: 1100px;
+   max-width: 1450px;
+   margin: auto;
+}
 
+.menubar {
+   display: flex;
+   position: relative;
+   justify-content: space-between;
 }
 
 .day_forecast {
@@ -13,20 +18,24 @@
     background-color: rgb(110, 112, 209);
     justify-content: center;
     color: white;
-    height: fit-content;
-    width: fit-content;
-    padding: 2%;
+    width: fit-content;    
+    padding: 10px;
     line-height: 1.6;
 }
 
+#last_check {
+    width: 160px;
+    padding: 10px;
+}
 
-body {
-    max-height: 1100px;
-    max-width: 1450px;
-    /* background-color: #a39080; */
+
+.main{
+    background-image: url('../pics/Background/Europa.png');
+  
+    /*  background-color: #a39080; */
     background-repeat: no-repeat;
     background-position: center;
-    display: grid;
+   /* display: grid;
     grid-template-columns: 600px 1fr 1fr 1fr 1fr 1fr 150px;
     grid-template-rows:  80px 80 px 1fr 100px 100px 50px 100px 50px;
     grid-template-areas: ".  . . kompas . . ."
@@ -38,7 +47,7 @@ body {
                         ". . button button button . ."
                         ". morgen morgen . overmorgen overmorgen . "
                         ". . . about . . ."
-                     			
+    */                 			
 }
 
 body input {

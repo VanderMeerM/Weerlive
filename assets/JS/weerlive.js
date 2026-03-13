@@ -234,7 +234,7 @@ async function getWeatherByLocation() {
                             document.body.style.backgroundImage = "url('./assets/pics/Background/Europa.png')"
 
             }
-            changeBackground();
+          //  changeBackground();
 
 
             function calculateWindSpeed() {
