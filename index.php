@@ -51,7 +51,8 @@ $response = curl_exec($curl);
 
 $response = json_decode($response, true); 
 
-echo '<div class="menubar">';
+
+echo '<div class="day_forecast_container">';
 
 for ($i=1; $i<5; $i++) {
     echo '
@@ -95,8 +96,42 @@ echo '<div id="last_check"> Laatste controle: <br> ' . date('d-m-Y H:i' , $respo
 echo $response['api'][0]['rest_verz'];
 
 echo '
-</div>
-</div>';
+</div></div>
+
+<div class="hour_forecast_container">';
+
+for ($i=0; $i < 24; $i++) {
+    echo '
+   
+    <div class="hour_forecast">
+
+    <div style="text-align:center">' .   // uurverwachting 
+   date('H:i', $response['uur_verw'][$i]['timestamp']) . 
+    '</div>
+    
+    <div style="margin: auto">
+
+    <img src="./assets/iconen-weerlive-wit/' . $response['uur_verw'][$i]['image'] . '.png">
+    ' . $response['uur_verw'][$i]['temp'] . ' ºC' . '
+    
+    </div> 
+
+   <div style="margin: auto">'  
+   . $response['uur_verw'][$i]['neersl'] . '%' . // neerslagkans 
+
+  '</div>
+  </div>';
+}
+
+
+  /*
+  <div style="margin: auto">'  
+  . $response['uur_verw'][$i]['zond_perc_dag'] . '%' . // kans op zon 
+  '</div>
+ */       
+  
+echo '
+</div></div>';
 
 //print_r($response['wk_verw']);
 
@@ -121,7 +156,7 @@ echo '<div class="main">
   </div>
 
   <div id="location">
-    Het weer in <br>Lent
+   Lent <br>
   <span style="font-size:10px;"> (huidige locatie) </span>
   </div>
 
@@ -156,10 +191,11 @@ voelt aan als:</font><br>' . $response['liveweer'][0]['gtemp'] . ' ºC
   <div id="winds"> </div>
 
   <div id="map"></div>
-
+<!--
   <div id="button"></div>
   <div id="morgen"></div>
   <div id="overmorgen"> </div>
+-->
 
   <div id="about"> Over deze site </div>
   <div id="overlay" onclick="off()">

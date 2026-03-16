@@ -1,26 +1,37 @@
 
-
-body {
-      max-height: 1100px;
-   max-width: 1450px;
-   margin: auto;
+:root {
+     --blue: rgb(106, 181, 241);
 }
 
-.menubar {
+.day_forecast_container, 
+.hour_forecast_container {
    display: flex;
    position: relative;
-   justify-content: space-between;
-}
+   justify-content: space-between; 
+   max-width: 1450px;
 
-.day_forecast {
+ }
+ .hour_forecast_container {
+    overflow: auto;   
+    margin: 1% 0;
+
+ }
+ 
+.day_forecast, 
+.hour_forecast {
     display: flex;
     flex-direction: column;
-    background-color: rgb(110, 112, 209);
+    background-color: var(--blue);
     justify-content: center;
     color: white;
     width: fit-content;    
     padding: 10px;
     line-height: 1.6;
+}
+
+.hour_forecast {
+    padding: 10px 25px;
+    margin: 0 3px;
 }
 
 #last_check {
@@ -31,7 +42,11 @@ body {
 
 .main{
     background-image: url('../pics/Background/Europa.png');
-  
+    max-height: 1100px;
+    max-width: 1450px;
+    text-align: center;
+
+   
     /*  background-color: #a39080; */
     background-repeat: no-repeat;
     background-position: center;
@@ -61,7 +76,6 @@ body input {
 #morgen, #overmorgen, 
 #regenzon, #input, #location, 
 #winds, #about {
-    grid-area: weer;
     color: white;
     font-weight: bold;
     font-size: large;
@@ -71,33 +85,27 @@ body input {
     text-align: center;
     }
 
-    #winds {
-        grid-area: arrow;
-            }
-
    #moon {
-      grid-area: moon;
+      width: fit-content;
    }      
 
 #input, #location {
-    grid-area: input;
     margin: 0 auto;
     margin-bottom: 20px;
 }
 
 #location {
-    grid-area: location;
+    width: fit-content;
+    font-size: xx-large;
    
 }
 
 #kompas {
-    grid-area: kompas;
-    margin: auto;
-   
+    width: fit-content;
+
 }
 
 #temperatuur {
-    grid-area: temperatuur; 
     border: 1px #ffffff solid;
     padding: 20px 20px 0px;
    }
@@ -107,8 +115,6 @@ body input {
 }
 
 #arrow {
-    grid-area: arrow;
-    /*visibility: hidden;*/
     color: white;
     margin: auto;
     max-width: 100px;
@@ -117,14 +123,12 @@ body input {
 }
     
  #map {
-       grid-area: map;
        filter: grayscale(100%);
         height: 300px; 
         width: 300px; 
       }
     
  #image  {
-  grid-area: image;
   transform: scale(2);
   margin: auto;
    }
@@ -139,7 +143,6 @@ body input {
    
 #button {
     display: inline;
-    grid-area: button;
     text-align: center;
     z-index: 4;
     }
@@ -156,23 +159,14 @@ body input {
    visibility: hidden;
 }
 
-#morgen {
-   grid-area: morgen;
-}
-  
-#overmorgen {
-    grid-area: overmorgen;
-}
-     
+    
  #about {
-    grid-area: about;
     margin-top: 40px;
     text-decoration: none;
     z-index: 5;
 }
 
 #regenzon {
-    grid-area: regenzon;
     text-align: left;
   
   }
@@ -182,10 +176,7 @@ body input {
     display: none;
     width: 80%;
     height: 90%;
-    /*bottom: 10%;
-      
-    left: 50%;
-    top: 50%;*/
+   
     right: 10%;
     background-color: rgba(0,0,0,0.8);
     z-index: 8;
@@ -256,7 +247,7 @@ body input {
 
 @media (max-width: 750px) {
     body {
-       /* background-image: url("./pics/Europa.png"); */
+       /* background-image: url("./pics/Europa.png");
         background-repeat: repeat-y;
         display: grid;
         grid-template-columns: 20px 1fr 100px;
@@ -272,7 +263,7 @@ body input {
                             ". morgen ."
                             ". overmorgen ."
                             ". about ."
-       
+        */
                             
     }
     
@@ -294,7 +285,6 @@ body input {
     }
 
     #regenzon {
-        grid-area: temperatuur;
         margin-left: 200px;
     }
 
