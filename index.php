@@ -100,7 +100,6 @@ $response = json_decode($response, true);
 
 include('./show_forecasts.php');
 
-echo '<div class="main">';
 
 /*
 
@@ -116,7 +115,44 @@ echo '
     <source src="./assets/rain.mp3" type="audio/mpeg">
   </audio>
 
-<div class="container_top_blocks">
+<div class="main">
+
+<div class="hour_forecast_container">';
+
+for ($i=0; $i < 24; $i++) {
+    echo '
+   
+    <div class="hour_forecast">
+
+    <div style="text-align:center">' .   // uurverwachting 
+   date('H', $response['uur_verw'][$i]['timestamp']) . 
+    '</div>
+    
+    <div>
+
+    <img src="./assets/iconen-weerlive-wit/' . $response['uur_verw'][$i]['image'] . '.png"><br>
+    ' . $response['uur_verw'][$i]['temp'] . ' ºC' . '
+    
+    </div> 
+    
+   <div style="display: inline-flex">
+     <img src="./assets/pics/regen.png">'  
+   . $response['uur_verw'][$i]['neersl'] . '%' . // neerslagkans 
+
+  '</div>
+  </div>';
+}
+
+
+  /*
+  <div style="margin: auto">'  
+  . $response['uur_verw'][$i]['zond_perc_dag'] . '%' . // kans op zon 
+  '</div>
+ */       
+  
+//print_r($response['wk_verw']);
+
+echo '<div class="container_top_blocks">
 
 <div class="first_block"> </div>
 
@@ -138,54 +174,9 @@ echo '
 
 <div id="moon"></div>
 
- </div> 
- </div>
-
-<table>
-<tr>
-<td>
- <div id="location"> ' .$_POST['plaats']. '</div>';
-
-if ($_POST['plaats'] = '') {
-  echo '<div id="gps"> (GPS) </div>';
-}
- 
-echo '
-</td>
-
-<td> 
-<div id="image">
- <img src="./assets/iconen-weerlive-wit/' . $response['liveweer'][0]['image'] . '.png">
+</div> 
 </div>
-</td>
-</tr>
-
-<tr>
-<td>
-<div class="container_temperature"> 
-<div id="current_temperature">' . $response['liveweer'][0]['temp'] . ' ºC </div> 
-</td>
-<td></td>
-</tr>
-
-<tr>
-<td>
-<div id="minmax_temperature"> ' . $response['wk_verw'][0]['min_temp'] . ' / ' . $response['wk_verw'][0]['max_temp'] . ' ºC </div>
-<div id="feel_temperature"> voelt als: ' . $response['liveweer'][0]['gtemp'] . ' ºC</div>
 </div>
-</td>
-<td></td>
-</tr>
-
-<tr colspan="2">
-<td>
-<div class="sunriseset">
-<img src="./assets/pics/sunrise1.png">  ' . $response['liveweer'][0]['sup'] . '
-<img src="./assets/pics/sunset1.png"> ' . $response['liveweer'][0]['sunder'] . '
-
-</td>
-</tr>
-</table>
 
 <div id="weer"> '. $response['liveweer'][0]['verw'] . ' </div>';
 

@@ -1,7 +1,7 @@
 
 :root {
-     --blue: rgb(106, 181, 241);
-     --blue2: #24bbef;
+     --blue1: rgb(106, 181, 241);
+     --blue2: #494fc9;
 }
 
 body {
@@ -15,37 +15,55 @@ body input {
     font-style: italic;
 }
 
+.temperature_day_forecast_container {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.temperature_now {
+    margin: 0 3% 0 0;
+}
 
 .day_forecast_container, 
-.hour_forecast_container {
+.hour_forecast_container, 
+.sunriseset {
    display: flex;
    position: relative;
    justify-content: space-between; 
-   max-width: 1450px;
-   background-color: var(--blue);
+   /* max-width: 1450px;
+   background-color: var(--blue1); */ 
 
  }
+
+ .day_forecast_container {
+    flex-direction: column;
+}
+
+ #width_day_forecast {
+    padding: 0 10px;
+ }
+
  .hour_forecast_container {
     overflow: auto;   
     margin: 1% 0;
-
  }
  
 .day_forecast, 
 .hour_forecast {
     display: flex;
-    flex-direction: column;
     background-color: var(--blue2);
     justify-content: center;
     color: white;
     width: fit-content;    
-    padding: 10px;
+    padding: 5px;
     line-height: 1.6;
 }
 
 .hour_forecast {
-    padding: 10px 25px;
+    padding: 0px 25px;
     margin: 0 3px;
+    flex-direction: column;
+    background-color: var(--blue1);
 }
 
 
@@ -125,7 +143,11 @@ table {
     }
 
 .sunriseset {
-    margin: 25px auto 0;
+    margin: 0 auto;
+    display:block;
+    padding:0 15px;
+    background-color: var(--blue2); 
+
 } 
 
  .sunriseset img {
