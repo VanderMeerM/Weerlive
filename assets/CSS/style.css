@@ -5,7 +5,8 @@
 }
 
 body {
-    margin: 8px;
+    margin: 8px auto;
+    width: 80%;
 }
 
 body input {
@@ -29,7 +30,7 @@ body input {
 .sunriseset {
    display: flex;
    position: relative;
-   justify-content: space-between; 
+   margin: auto; 
    /* max-width: 1450px;
    background-color: var(--blue1); */ 
 
@@ -54,7 +55,7 @@ body input {
     background-color: var(--blue2);
     justify-content: center;
     color: white;
-    width: fit-content;    
+   /* width: fit-content; */   
     padding: 5px;
     line-height: 1.6;
 }
@@ -91,18 +92,21 @@ body input {
     width: 100%;
 }
 
-.first_block, 
+.empty_block, 
 .location_block,
-.moon_block, 
 .about_block,
 .last_check_block {
     width: 33%;
 }
 
+.moon_block {
+    width: 16%;
+}
+
 table {
     margin: auto;
     width: 250px;
-    background-color: var(--blue2);
+  /*  background-color: var(--blue2); */
 }
 /*
 .main_container_data {
@@ -142,13 +146,22 @@ table {
     text-align: center;
     }
 
-.sunriseset {
-    margin: 0 auto;
-    display:block;
-    padding:0 15px;
-    background-color: var(--blue2); 
+ #current_temperature, 
+#minmax_temperature, 
+#feel_temperature, 
+#location, 
+.sunriseset
+{
+    color: black;
+}   
 
-} 
+#weer {
+    padding:20px 0;
+}
+
+.sunriseset {
+    display: block;
+}
 
  .sunriseset img {
     margin: 5px;
@@ -203,6 +216,8 @@ table {
     
  #image  {
   transform: scale(2);
+  background-color: var(--blue2);
+  width: fit-content;
   }
 
     

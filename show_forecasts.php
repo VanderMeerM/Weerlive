@@ -6,12 +6,14 @@ echo '
 
 <div class="temperature_day_forecast_container">
 
+<div class="empty_block"></div>
+
 <div class="temperature_now"> 
 
 <table>
 <tr>
 <td>
- <div id="location"> ' .$_POST['plaats']. '</div>';
+ <div id="location">' .$_POST['plaats']. '</div>';
 
 if ($_POST['plaats'] = '') {
   echo '<div id="gps"> (GPS) </div>';
@@ -53,52 +55,12 @@ echo '
 <div><img src="./assets/pics/sunset1.png"> ' . $response['liveweer'][0]['sunder'] . '</div>
 </div>
 
-<div class="day_forecast_container">';
- 
+<div class="moon_block"> 
+<div id="moon"></div>
+</div> 
 
-for ($i=1; $i<5; $i++) {
-    echo '
-   
-    <div class="day_forecast">
-
-   <div id="width_day_forecast">' .   // datum 
-    explode('-', $response['wk_verw'][$i]['dag'])[0] . '-' . 
-    explode('-', $response['wk_verw'][$i]['dag'])[1] . 
-    '</div>
-    
-<div id="width_day_forecast">
-</div>
-
-  <div id="width_day_forecast">
-    <img src="./assets/iconen-weerlive-wit/' . $response['wk_verw'][$i]['image'] . '.png">
-    ' . $response['wk_verw'][$i]['min_temp'] . ' /  
-    ' . $response['wk_verw'][$i]['max_temp'] . ' ºC' . '
-   </div> 
-
-  <div id="width_day_forecast">
-   <img src="./assets/pics/arrow.png" style="transform: rotate('.($response['wk_verw'][$i]['windrgr']+90).'deg) scale(0.33)">' //wind 
-   . $response['wk_verw'][$i]['windbft'] . ' Bft' . '
-   </div>
-
-  <div id="width_day_forecast">
-   <img src="./assets/pics/regen.png">' 
-   . $response['wk_verw'][$i]['neersl_perc_dag'] . '%' .  // neerslagkans 
-  '</div>
-
- <div id="width_day_forecast">
-  <img src="./assets/pics/zon.png">'   
-  . $response['wk_verw'][$i]['zond_perc_dag'] . '%' . // kans op zon 
-  '</div>
-                
-  </div>';
-}
-
-echo '
-</div>
 </div>
 </div>';
-
-
 
   /*
   <div style="margin: auto">'  
