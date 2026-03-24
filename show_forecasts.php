@@ -13,7 +13,7 @@ echo '
 <table>
 <tr>
 <td>
- <div id="location">' . $_POST['place'] . '</div>';
+ <div id="location">' . $response['liveweer'][0]['plaats'] . '</div>';
 
 if ($_POST['place'] = '') {
   echo '<div id="gps"> (GPS) </div>';

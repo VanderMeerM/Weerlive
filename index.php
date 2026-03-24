@@ -33,19 +33,14 @@ date_default_timezone_set('Europe/Amsterdam');
 
 require('./assets/api.php');
 
+include ('./coordinates.php');
+//echo 'Plaats ' . $_POST['coordinates'];
+
 if (!$_POST['place']) {
 
-$_POST['place'] = 'Lent'; //$_POST['place'];
+$_POST['place'] = $_POST['coordinates']; // 'Lent';
 
 }
-
-/*else {
-
-?>
-*/
-
-
-include ('./coordinates.php');
 
 
 $curl = curl_init();
@@ -96,6 +91,7 @@ echo '
 <div><img src="./assets/pics/sunset1.png"> ' . $response['liveweer'][0]['sunder'] . '</div>
 </div>
 
+<div id="last_check"> Geüpdatet: <br>' . date('d-m-Y H:i' , $response['liveweer'][0]['timestamp']) . '</div>
 
 
 <div class="hour_forecast_container">';
@@ -244,8 +240,7 @@ echo '
 
 <div class="last_check_block">
 
-<div id="last_check"> ' . date('d-m-Y H:i' , $response['liveweer'][0]['timestamp']) . ' / 
-' . $response['api'][0]['rest_verz'] . '</div>
+<div id="last_check"> ' . $response['api'][0]['rest_verz'] . '</div>
 
 </div>
 

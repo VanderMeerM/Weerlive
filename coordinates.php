@@ -1,33 +1,31 @@
 
-<script> 
+<script defer> 
+
 if (navigator.geolocation) {
  navigator.geolocation.getCurrentPosition(getPositionByGPS);
 }
+
+if (document.getElementById("getCoordinates") != null) {
+ document.getElementById("getCoordinates").submit();
+}
+ 
 
 function getPositionByGPS(position) {
       lat = position.coords.latitude
       long = position.coords.longitude
      
-      document.getElementById('lat').value = lat
-     document.getElementById('long').value = long
+     locationCoordinates= `${lat},${long}`; 
+     document.getElementById('input_coordinates').value = locationCoordinates;
 }
-
-let sendCoordinates = document.getElementById("getCoordinates");
-
-sendCoordinates.addEventListener("submit", e => {
-  e.preventDefault()
-});
 
 </script>
 
 
-<?php
-
-echo '
 <form action="./" id="getCoordinates" method="post">
-  <input type="text" name="lat" id="lat">
-  <input type="text" name="long" id="long">
-  <button type="submit">Submit</button>
-</form>';
+  <input id="input_coordinates" type="text" name="coordinates">
+  <input type="image" id="kompas" src="./assets/pics/kompas.png"> 
+  <!-- <input type="submit"> -->
 
-echo 'Plaats: ' . $_POST['lat'];
+</form>
+
+

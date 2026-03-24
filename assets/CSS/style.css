@@ -1,6 +1,6 @@
 
 :root {
-     --blue1: rgb(106, 181, 241);
+     --blue1: rgb(98 108 116); /* rgb(106, 181, 241); */
      --blue2: #494fc9;
 }
 
@@ -17,7 +17,8 @@ body input {
 }
 
 
-#input_place {
+#input_place, 
+#input_coordinates {
     display: none;
 }
 
@@ -198,9 +199,12 @@ table {
     margin: auto;
 }
 
-#kompas {
+form #kompas {
     width: fit-content;
-    padding: 15px;
+    padding: 5px;
+    margin: 2% auto;
+    display: flex;
+    background-color: var(--blue2);
 }
 
 #current_temperature {
@@ -253,6 +257,12 @@ table {
     text-decoration: none;
     z-index: 5;
     align-content: end;
+}
+
+#last_check {
+    text-align: right;
+    margin: 0 2%; 
+    font-size: 12px;
 }
 
 
