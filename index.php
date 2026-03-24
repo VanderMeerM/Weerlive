@@ -33,53 +33,24 @@ date_default_timezone_set('Europe/Amsterdam');
 
 require('./assets/api.php');
 
-if ($_POST['plaats'] != '') {
+if (!$_POST['place']) {
 
-$location = 'Lent'; //$_POST['plaats'];
+$_POST['place'] = 'Lent'; //$_POST['place'];
 
 }
 
 /*else {
 
 ?>
+*/
 
-<script>
-
-if (navigator.geolocation) {
- navigator.geolocation.getCurrentPosition(getPositionByGPS);
-}
-
-function getPositionByGPS(position) {
-      lat = position.coords.latitude
-      long = position.coords.longitude
-     
-      console.log(lat)
-      console.log(long)
-
-   /* form = document.createElement("form");
-    form.method = "post";
-    form.action = './coordinates.php';
-    input = document.createElement("input");
-    input.setAttribute("lat", lat);
-    input.setAttribute("long", long);
-    form.appendChild(input);
-    document.body.appendChild(form);
-    form.submit();
-
-}
-
-</script> 
-
-<?php
 
 include ('./coordinates.php');
 
-}
-*/
 
 $curl = curl_init();
 
-$cur_url = 'https://weerlive.nl/api/weerlive_api_v2.php?key='. $api_key .'&locatie=' .$location.'';
+$cur_url = 'https://weerlive.nl/api/weerlive_api_v2.php?key='. $api_key .'&locatie='. $_POST['place']. '';
 
 curl_setopt_array($curl, array(
   CURLOPT_URL => $cur_url,
@@ -111,6 +82,7 @@ include('./show_forecasts.php');
 */
 
 echo '
+
   <audio id="rainsound">
     <source src="./assets/rain.mp3" type="audio/mpeg">
   </audio>
@@ -118,6 +90,12 @@ echo '
 <div class="main">
 
 <div id="weer"> '. $response['liveweer'][0]['verw'] . ' </div>
+
+<div class="sunriseset">
+<div><img src="./assets/pics/sunrise1.png">  ' . $response['liveweer'][0]['sup'] . '</div>
+<div><img src="./assets/pics/sunset1.png"> ' . $response['liveweer'][0]['sunder'] . '</div>
+</div>
+
 
 
 <div class="hour_forecast_container">';
@@ -199,23 +177,17 @@ echo '</div>';
 
 echo '<div class="container_top_blocks">
 
-<div class="empty_block"> </div>
+<div class="empty_block"> </div>';
 
+/*
 <div class="location_block">
 
   <img id="kompas" onclick="getWeatherByLocation()" src="./assets/pics/kompas.png">
 
-<div id="input">
-
-  <form method="post" action="./">
-     <input id="plaats" name="plaats" placeholder="Voer een plaats in Nederland in..."><br>
-    <input id="submit_place" type="submit">
-  </form>
- 
  </div>
- </div>
+*/
 
-</div>';
+echo '</div>';
 
 ?>
 
@@ -281,6 +253,13 @@ echo '
 <div>';
 
 ?>
+
+<script>
+  document.getElementById('location').addEventListener('click', () => {
+    document.getElementById('input_place').style.display = 'block';
+    });
+
+</script>
 
 </body>
 

@@ -16,6 +16,20 @@ body input {
     font-style: italic;
 }
 
+
+#input_place {
+    display: none;
+}
+
+
+#submit_place {
+    visibility: hidden;
+}
+
+#place {
+    width: 80%;
+}
+
 .temperature_day_forecast_container {
     display: flex;
     margin-bottom: 10px;
@@ -68,10 +82,6 @@ body input {
 }
 
 
-#submit_place {
-    visibility: hidden;
-}
-
 .main {
     background-image: url('../pics/Background/Europa.png');
     max-height: 1100px;
@@ -95,12 +105,9 @@ body input {
 .empty_block, 
 .location_block,
 .about_block,
-.last_check_block {
-    width: 33%;
-}
-
+.last_check_block, 
 .moon_block {
-    width: 16%;
+    width: 33%;
 }
 
 table {
@@ -128,6 +135,11 @@ table {
 }
 */
 
+.moon {
+    display: flex;
+    justify-content: center;
+}
+
 #current_temperature, 
 #minmax_temperature, 
 #feel_temperature,
@@ -149,18 +161,13 @@ table {
  #current_temperature, 
 #minmax_temperature, 
 #feel_temperature, 
-#location, 
-.sunriseset
+#location
 {
     color: black;
 }   
 
 #weer {
     padding:20px 0;
-}
-
-.sunriseset {
-    display: block;
 }
 
  .sunriseset img {
@@ -181,7 +188,8 @@ table {
 }
 
 #location {
-    width: fit-content;
+    min-width: 5px;
+    max-width: fit-content;
     font-size: xx-large;
    
 }

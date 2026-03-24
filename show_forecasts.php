@@ -13,9 +13,9 @@ echo '
 <table>
 <tr>
 <td>
- <div id="location">' .$_POST['plaats']. '</div>';
+ <div id="location">' . $_POST['place'] . '</div>';
 
-if ($_POST['plaats'] = '') {
+if ($_POST['place'] = '') {
   echo '<div id="gps"> (GPS) </div>';
 }
  
@@ -26,6 +26,19 @@ echo '
 <div id="image">
  <img src="./assets/iconen-weerlive-wit/' . $response['liveweer'][0]['image'] . '.png">
 </div>
+</td>
+</tr>
+
+<tr id="input_place" colspan="2">
+<td> 
+<div id="input">
+
+  <form method="post" action="./">
+     <input id="place" name="place" placeholder="Voer een plaats in Nederland in..."><br>
+    <input id="submit_place" type="submit">
+  </form>
+ 
+ </div>
 </td>
 </tr>
 
@@ -48,11 +61,6 @@ echo '
 
 </table>
 
-</div>
-
-<div class="sunriseset">
-<div><img src="./assets/pics/sunrise1.png">  ' . $response['liveweer'][0]['sup'] . '</div>
-<div><img src="./assets/pics/sunset1.png"> ' . $response['liveweer'][0]['sunder'] . '</div>
 </div>
 
 <div class="moon_block"> 
