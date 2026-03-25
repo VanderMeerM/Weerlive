@@ -33,12 +33,13 @@ date_default_timezone_set('Europe/Amsterdam');
 
 require('./assets/api.php');
 
-include ('./coordinates.php');
 //echo 'Plaats ' . $_POST['coordinates'];
 
 if (!$_POST['place']) {
 
-$_POST['place'] = $_POST['coordinates']; // 'Lent';
+include ('./coordinates.php');
+
+$_POST['place'] = $_POST['coordinates']; 
 
 }
 
@@ -173,7 +174,11 @@ echo '</div>';
 
 echo '<div class="container_top_blocks">
 
-<div class="empty_block"> </div>';
+<div class="empty_block"> </div>
+<div id="arrow"> 
+<img src= "./assets/pics/arrow.png">
+</div>
+<div id="winds"> </div>';
 
 /*
 <div class="location_block">
@@ -186,9 +191,7 @@ echo '<div class="container_top_blocks">
 echo '</div>';
 
 ?>
-
-  <div id="arrow"> </div>
-  <div id="winds"> </div>
+ 
 
   <div id="map"></div>
 <!--

@@ -1,7 +1,7 @@
 
 :root {
      --blue1: rgb(98 108 116); /* rgb(106, 181, 241); */
-     --blue2: #494fc9;
+     --blue2: #ababab; /* #494fc9; */
 }
 
 body {
@@ -107,7 +107,9 @@ body input {
 .location_block,
 .about_block,
 .last_check_block, 
-.moon_block {
+.moon_block, 
+#arrow, 
+#winds {
     width: 33%;
 }
 
