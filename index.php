@@ -33,20 +33,42 @@ date_default_timezone_set('Europe/Amsterdam');
 
 require('./assets/api.php');
 
-//echo 'Plaats ' . $_POST['coordinates'];
+
+
+
+
+echo '
+<form id="getCoordinates" name="getCoordinates" method="post">
+  <input id="input_coordinates" type="text" name="coordinates">
+  <input type="image" id="kompas" src="./assets/pics/kompas.png"> 
+</form>';
+
+//echo 'Plaats ' . $_POST['place'];
 
 if (!$_POST['place']) {
 
+if ( (!$_GET['lat']) && (!$_GET['long']) ) {
+
 include ('./coordinates.php');
 
-$_POST['place'] = $_POST['coordinates']; 
+$location = $_GET['lat'] + ',' + $_GET['long']; 
 
+}
+
+elseif (!$_POST['place']) {
+
+  $location = $_GET['lat'] . ',' . $_GET['long']; 
+
+}
+}
+else {
+  $location = $_POST['place'];
 }
 
 
 $curl = curl_init();
 
-$cur_url = 'https://weerlive.nl/api/weerlive_api_v2.php?key='. $api_key .'&locatie='. $_POST['place']. '';
+$cur_url = 'https://weerlive.nl/api/weerlive_api_v2.php?key='. $api_key .'&locatie=' . $location . '';
 
 curl_setopt_array($curl, array(
   CURLOPT_URL => $cur_url,
