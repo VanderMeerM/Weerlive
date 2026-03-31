@@ -24,7 +24,7 @@ echo '
 
 <td> 
 <div id="image">
- <img src="./assets/iconen-weerlive-wit/' . $response['liveweer'][0]['image'] . '.png">
+ <img src="./assets/iconen-weerlive_zw/' . $response['liveweer'][0]['image'] . '.png">
 </div>
 </td>
 </tr>

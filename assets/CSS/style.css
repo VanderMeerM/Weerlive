@@ -230,7 +230,7 @@ form #kompas {
     
  #image  {
   transform: scale(2);
-  background-color: var(--blue2);
+  /*background-color: var(--blue2);*/
   width: fit-content;
   }
 
@@ -311,6 +311,10 @@ form #kompas {
         }
         
  @media (max-width: 1400px) {
+
+    body {
+        width: 100%;
+    }
 
         #map {
           height: 250px; 
