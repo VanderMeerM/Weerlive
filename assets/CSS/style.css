@@ -33,11 +33,6 @@ body input {
 
 .container_temperature {
     display: flex;
-    margin-bottom: 10px;
-}
-
-.temperature_now {
-    margin: 0 3% 0 0;
 }
 
 .day_forecast_container, 
@@ -46,9 +41,7 @@ body input {
    display: flex;
    position: relative;
    margin: auto; 
-   /* max-width: 1450px;
-   background-color: var(--blue1); */ 
-
+   
  }
 
  .day_forecast_container {
@@ -85,7 +78,7 @@ body input {
 
 .main {
     background-image: url('../pics/Background/Europa.png');
-    height: 1140px;
+    height: 1140px; 
     max-width: 1450px;
     text-align: center;
     display: flex;
@@ -101,6 +94,10 @@ body input {
 .container_footer_blocks {
     display: flex;
     width: 100%;
+}
+
+.container_details {
+      margin: 5%;
 }
 
 .empty_block, 
@@ -185,11 +182,7 @@ text-align: left;
     margin: 0px;
 }
 
- .sunriseset img {
-    margin: 5px;
-  }
-
- #gps {
+  #gps {
     font-size: 12px;
     text-align: center;
 }
@@ -210,16 +203,12 @@ text-align: left;
    
 }
 
-.main #kompas {
-    margin: auto;
-}
-
 form #kompas {
     width: fit-content;
     padding: 5px;
     margin: 2% auto;
     display: flex;
-    background-color: var(--blue2);
+    
 }
 
 #current_temperature {

@@ -31,15 +31,6 @@ date_default_timezone_set('Europe/Amsterdam');
 
 require('./assets/api.php');
 
-
-if ($_POST['place']) {
-echo '
-<form id="getCoordinates" name="getCoordinates" method="post">
-  <input id="input_coordinates" type="text" name="coordinates">
-  <input type="image" id="kompas" src="./assets/pics/kompas.png"> 
-</form>';
-}
-
 //echo 'Plaats ' . $_POST['place'];
 
 if (!$_POST['place']) {
@@ -102,8 +93,18 @@ echo '
     <source src="./assets/rain.mp3" type="audio/mpeg">
   </audio>
 
-<div class="main">
+<div class="main">';
 
+
+if ($_POST['place']) {
+echo '
+<form id="getCoordinates" name="getCoordinates" method="post">
+  <input id="input_coordinates" type="text" name="coordinates">
+  <input type="image" id="kompas" src="./assets/pics/kompas.png"> 
+</form>';
+}
+
+echo '
 <div id="weer"> '. $response['liveweer'][0]['verw'] . ' </div>
 
 <div class="sunriseset">

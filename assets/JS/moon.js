@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         size: 50, //pixels
         lightColor: "#FFFF88", //CSS color
-        shadeColor: "#111111", //CSS color
+        shadeColor: "#beb2b2", //CSS color
         sizeQuarter: 20, //pixels
         texturize: false //true - false
     }
