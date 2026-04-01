@@ -1,10 +1,6 @@
 
 
-document.getElementById('plaats').addEventListener("change",
-    () => getWeatherByInput(), { passive: true }
-)
-
-getWeatherByLocation();
+// getWeatherByLocation();
 
 async function getWeatherByLocation() {
     document.getElementById('moon').style.display = "none";
@@ -169,7 +165,7 @@ async function getWeatherByLocation() {
 
             }
 
-            weatherToday();
+         //   weatherToday();
 
         
             function weatherTomorrow() {
@@ -257,7 +253,7 @@ async function getWeatherByLocation() {
                     data.liveweer[0].windr === dir.direction
             )
 
-            turnandmoveArrow();
+     //       turnandmoveArrow();
 
             function turnandmoveArrow() {
 
@@ -308,8 +304,8 @@ async function getWeatherByLocation() {
     }
 }
 
-document.getElementById('about').addEventListener('click', function () {
-    on()
+document.getElementById('about').addEventListener('click', () => {
+   on()
 })
 
 function on() {

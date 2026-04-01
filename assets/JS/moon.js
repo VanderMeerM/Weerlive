@@ -36,5 +36,7 @@ function example_1(moon) {
     let day = new Date().getDate()
     let html = "<div class='moon'>"
     html += moon.phase[day].svg
+    if (document.getElementById("moon")) {
     document.getElementById("moon").innerHTML = html
+    }
 }

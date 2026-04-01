@@ -31,7 +31,7 @@ body input {
     width: 80%;
 }
 
-.temperature_day_forecast_container {
+.container_temperature {
     display: flex;
     margin-bottom: 10px;
 }
@@ -56,7 +56,7 @@ body input {
 }
 
  #width_day_forecast {
-    padding: 0 10px;
+    padding: 0 5px;
  }
 
  .hour_forecast_container {
@@ -85,7 +85,7 @@ body input {
 
 .main {
     background-image: url('../pics/Background/Europa.png');
-    max-height: 1100px;
+    height: 1140px;
     max-width: 1450px;
     text-align: center;
     display: flex;
@@ -97,7 +97,7 @@ body input {
    
 }
 
-.container_top_blocks, 
+.container_details, 
 .container_footer_blocks {
     display: flex;
     width: 100%;
@@ -149,9 +149,13 @@ table {
 .sunriseset,
 #weer, 
 #last_check,
+#last_update,
 #morgen, #overmorgen, 
 #input, #location, 
-#winds, #about {
+#winds, 
+.info_details,
+.weather_warning,
+#about {
     color: white;
     font-weight: bold;
     font-size: large;
@@ -161,6 +165,12 @@ table {
     text-align: center;
     }
 
+
+.info_details {
+width: 50%;
+text-align: left;
+}
+
  #current_temperature, 
 #minmax_temperature, 
 #feel_temperature, 
@@ -169,8 +179,10 @@ table {
     color: black;
 }   
 
-#weer {
-    padding:20px 0;
+#weer, 
+.weather_warning {
+    padding: 20px;
+    margin: 0px;
 }
 
  .sunriseset img {
@@ -179,6 +191,7 @@ table {
 
  #gps {
     font-size: 12px;
+    text-align: center;
 }
 
 #moon {
@@ -214,6 +227,11 @@ form #kompas {
     padding: 20px 0;
 }
 
+.container_arrow {
+    width: 50%;
+    margin: auto;
+}
+
 #arrow {
     color: white;
     margin: auto;
@@ -222,24 +240,13 @@ form #kompas {
     background-color: null;
 }
     
- #map {
-       filter: grayscale(100%);
-        height: 300px; 
-        width: 300px; 
-      }
-    
+   
  #image  {
   transform: scale(2);
   /*background-color: var(--blue2);*/
   width: fit-content;
   }
 
-    
-#button {
-    display: inline;
-    text-align: center;
-    z-index: 4;
-    }
 
 .font {
     font-size: large;
@@ -259,12 +266,13 @@ form #kompas {
     text-decoration: none;
     z-index: 5;
     align-content: end;
-}
+ }
 
-#last_check {
+#last_update {
     text-align: right;
     margin: 0 2%; 
     font-size: 12px;
+    line-height: normal;
 }
 
 
@@ -272,8 +280,8 @@ form #kompas {
     position: fixed;
     display: none;
     width: 80%;
-    height: 90%;
-   
+    height: 95%;
+    bottom: 5%;
     right: 10%;
     background-color: rgba(0,0,0,0.8);
     z-index: 8;
@@ -292,20 +300,9 @@ form #kompas {
     -ms-transform: translate(-50%,-50%);
   }
 
-  @media (max-width: 1800px) {
+  @media (max-width: 1550px) {
 
-            #doc2 {
-                display: none; 
-                }
-        }
-
-   @media (max-width: 1550px) {
-
-    #overlay {
-       width: 100%;
-        height: 100%;
-         }
-         #doc2 {
+           #doc2 {
                 display: none; 
                 }
         }
@@ -315,22 +312,12 @@ form #kompas {
     body {
         width: 100%;
     }
-
-        #map {
-          height: 250px; 
-          width: 250px; ;
-              }
-              
-            }
+    }
 
  
   @media (max-width: 1000px) {
 
-       #map {
-           height: 150px; 
-           width: 150px; ;
-            }
-
+   
         #text{
             font-size: small;
              top: 50%;
@@ -380,22 +367,6 @@ form #kompas {
     word-wrap: break-word;
 }
 
-#button {
-    text-align: left;
-}
-
-button {
-    margin-top: 10px;
-    height: 40px;
-    width: 100px;
-    }
-
-    #morgen, #overmorgen {
-    font-size: normal;
-    text-align: left;
-    margin: auto 0;
-    }
-
     #overlay {
         position: fixed;
         margin: 0 auto;
@@ -403,6 +374,8 @@ button {
         width: 100%;
         height: 100%;
         bottom: 0%; 
+        left: 5%;
+        right: 0%;
         top: 0%;
     }
             
@@ -424,17 +397,23 @@ button {
         margin-top: 0px;
         }
 
-   #map {
-          width: 0px;
-          height: 0px;
-         }
-      
+ 
     }
 
 @media (min-width: 550px) {
     #text {
         font-size: large;
     }
+}
+
+@media (max-width: 500px) {
+    .container_details {
+        flex-direction: column;
+    }
+    #arrow {
+        padding:50px;
+    }
+
 }
 
        

@@ -1,10 +1,31 @@
 
 <?php
 
+// Tijdstip zonsopgang en -ondergang naar timestamp converteren om maan wel/niet te tonen
+// (voor zonsopgang danwel na zonsondergang)..
+
+$hour_sup = explode(':', $response['liveweer'][0]['sup'])[0];
+$min_sup = explode(':', $response['liveweer'][0]['sup'])[1];
+
+$hour_sup_tstr = $hour_sup * 3600;
+$min_sup_tstr = $min_sup * 60;
+
+$hour_sunder = explode(':', $response['liveweer'][0]['sunder'])[0];
+$min_sunder = explode(':', $response['liveweer'][0]['sunder'])[1];
+
+$hour_sup_tstr = $hour_sup * 3600;
+$min_sup_tstr = $min_sup * 60;
+
+$hour_sunder_tstr = $hour_sunder * 3600;
+$min_sunder_tstr = $min_sunder * 60;
+
+$sup_tstr = strtotime("today") + $hour_sup_tstr + $min_sup_tstr;
+$sunder_tstr = strtotime("today") + $hour_sunder_tstr + $min_sunder_tstr;
+
 
 echo '
 
-<div class="temperature_day_forecast_container">
+<div class="container_temperature">
 
 <div class="empty_block"></div>
 
@@ -15,7 +36,7 @@ echo '
 <td>
  <div id="location">' . $response['liveweer'][0]['plaats'] . '</div>';
 
-if ($_POST['place'] = '') {
+if (!$_POST['place']) {
   echo '<div id="gps"> (GPS) </div>';
 }
  
@@ -44,8 +65,24 @@ echo '
 
 <tr>
 <td>
-<div class="container_temperature"> 
-<div id="current_temperature">' . $response['liveweer'][0]['temp'] . ' ºC </div> 
+<div class="container_temperature">';
+
+// Kleur (gevoels)temperatuur instellen 
+
+$color = null;
+
+if (floatval($response['liveweer'][0]['gtemp']) <= 5) {
+  $color = '#16b7eb';
+}
+else if (floatval($response['liveweer'][0]['gtemp']) >= 30) {
+  $color = '#e5355c';
+}
+else if (floatval($response['liveweer'][0]['gtemp']) >= 25) {
+  $color = '#f59c0b';
+}
+
+
+echo '<div id="current_temperature" style="color: '.$color.'">' . $response['liveweer'][0]['temp'] . ' ºC </div> 
 </td>
 <td></td>
 </tr>
@@ -53,7 +90,7 @@ echo '
 <tr>
 <td>
 <div id="minmax_temperature"> ' . $response['wk_verw'][0]['min_temp'] . ' / ' . $response['wk_verw'][0]['max_temp'] . ' ºC </div>
-<div id="feel_temperature"> voelt als: ' . $response['liveweer'][0]['gtemp'] . ' ºC</div>
+<div id="feel_temperature" style="color: '.$color.'"> voelt als: ' . $response['liveweer'][0]['gtemp'] . ' ºC</div>
 </div>
 </td>
 <td></td>
@@ -63,8 +100,13 @@ echo '
 
 </div>
 
-<div class="moon_block"> 
-<div id="moon"></div>
+<div class="moon_block">';
+
+if ( ($sup_tstr > strtotime('now')) || ($sunder_tstr < strtotime('now')) ) {
+echo '<div id="moon"></div>';
+}
+
+echo '
 </div> 
 
 </div>
