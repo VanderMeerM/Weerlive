@@ -31,6 +31,8 @@ date_default_timezone_set('Europe/Amsterdam');
 
 require('./assets/api.php');
 
+include ('./assets/variables.php');
+
 //echo 'Plaats ' . $_POST['place'];
 
 if (!$_POST['place']) {
@@ -107,14 +109,44 @@ echo '
 echo '
 <div id="weer"> '. $response['liveweer'][0]['verw'] . ' </div>
 
+<div class="container_sun">
+
 <div class="sunriseset">
-<div><img src="./assets/pics/sunrise1.png">  ' . $response['liveweer'][0]['sup'] . '</div>
-<div><img src="./assets/pics/sunset1.png"> ' . $response['liveweer'][0]['sunder'] . '</div>
+<div><img src="./assets/pics/zonsopkomst.png">  ' . $response['liveweer'][0]['sup'] . '</div>
+<div><img src="./assets/pics/zonsondergang.png"> ' . $response['liveweer'][0]['sunder'] . '</div>
 </div>
 
-<div id="last_update"> Laatste update: <br>' . date('d-m-Y H:i' , $response['liveweer'][0]['timestamp']) . '</div>
+<div class="container_arrow">';
 
+$turndegr = floatval($response['liveweer']['0']['windrgr'])+90;
 
+echo '<div id="arrow" style= "transform: rotate('.$turndegr.'deg);"> 
+<img src= "./assets/pics/arrow.png">
+</div>
+
+<div id="wind_text"> <img src="./assets/pics/wind_icon_w.png"> '
+. $response['liveweer']['0']['windbft'] . ' Bft </div>
+
+</div>
+</div>';
+
+/*
+<script defer>
+   document.getElementById('arrow').animate([
+                    { transform: 'translateX(50px)' },
+                    { transform: 'translateY(50px)' },
+
+                ],
+                    {
+                        duration: 5,
+                        iterations: 5,
+
+                    });
+</script>
+
+*/
+
+echo '
 <div class="hour_forecast_container">';
 
 for ($i=0; $i < 24; $i++) {
@@ -143,42 +175,69 @@ for ($i=0; $i < 24; $i++) {
 
 echo '</div>
 
+<div class="day_forecast_container">';
+
+for ($i=1; $i<5; $i++) {
+
+    echo '   
+    <div class="day_forecast">
+
+   <div id="width_day_forecast">' .   // datum 
+ 
+   $days[date('D', strtotime($response['wk_verw'][$i]['dag']))] . 
+  '</div>
+    
+  <div id="width_day_forecast">
+    <img src="./assets/iconen-weerlive-wit/' . $response['wk_verw'][$i]['image'] . '.png">
+    ' . $response['wk_verw'][$i]['min_temp'] . ' /  
+    ' . $response['wk_verw'][$i]['max_temp'] . ' ºC' . '
+   </div> 
+
+  <div id="width_day_forecast">
+   <img src="./assets/pics/arrow.png" style="transform: rotate('.($response['wk_verw'][$i]['windrgr']+90).'deg) scale(0.33)">' //wind 
+   . $response['wk_verw'][$i]['windbft'] . ' Bft' . '
+   </div>
+
+  <div id="width_day_forecast">
+   <img src="./assets/pics/regen.png">' 
+   . $response['wk_verw'][$i]['neersl_perc_dag'] . '%' .  // neerslagkans 
+  '</div>
+
+ <div id="width_day_forecast">
+  <img src="./assets/pics/zon.png">'   
+  . $response['wk_verw'][$i]['zond_perc_dag'] . '%' . // kans op zon 
+  '</div>
+                
+  </div>';
+}
+
+
+echo '
 <div class="container_details">
-
-<div class="container_arrow">';
-
-$turndegr = floatval($response['liveweer']['0']['windrgr'])+90;
-
-echo '<div id="arrow" style= "transform: rotate('.$turndegr.'deg);"> 
-<img src= "./assets/pics/arrow.png">
-</div>
-
-</div>
 
 <div class="info_details">
 
 <table>
 <tr>
 <td>
-Windkracht </td>
-<td>' . $response['liveweer']['0']['windbft'] . ' Bft</td>
-</tr>
-<tr>
-<td>
-Luchtvochtigheid </td>
+Rel. luchtvochtigheid </td>
 <td>' . $response['liveweer']['0']['lv'] . '%</td>
 </tr>
 <tr>
 <td>Luchtdruk </td>
-<td>' . $response['liveweer'][0]['luchtd'] . '</td>
+<td>' . $response['liveweer'][0]['luchtd'] . ' hPa</td>
 </tr>
 <tr>
 <td>Dauwpunt </td>
-<td>' .  $response['liveweer']['0']['dauwp'] .'</td>
+<td>' .  $response['liveweer']['0']['dauwp'] .'°C</td>
 </tr>
 <tr>
 <td>Zicht </td>
-<td>' .  $response['liveweer']['0']['zicht'] . '</td>
+<td>' .  $response['liveweer']['0']['zicht'] . ' m</td>
+</tr>
+<tr>
+<td>Glob. zonnestraling </td>
+<td>' .  $response['liveweer']['0']['gr'] . ' Watt/m2</td>
 </tr>
 </table>';
 
@@ -212,58 +271,10 @@ Weerwaarschuwing vanaf: ' . $response['liveweer']['0']['wrsch_g'] . '/'
  </div>
 */
 
-$days = [
-    'Sun' => 'ZO',
-    'Mon' => 'MA', 
-    'Tue' => 'DI', 
-    'Wed' => 'WO',
-    'Thu' => 'DO',
-    'Fri' => 'VR',
-    'Sat' => 'ZA'
-];
-
 
 echo '
 </div>
-<div class="day_forecast_container">';
-
-for ($i=1; $i<5; $i++) {
-
-    echo '   
-    <div class="day_forecast">
-
-   <div id="width_day_forecast">' .   // datum 
- 
-   $days[date('D', strtotime($response['wk_verw'][$i]['dag']))] . 
-   // explode('-', $response['wk_verw'][$i]['dag'])[0] . '-' . 
-   // explode('-', $response['wk_verw'][$i]['dag'])[1] . 
-    '</div>
-    
-  <div id="width_day_forecast">
-    <img src="./assets/iconen-weerlive-wit/' . $response['wk_verw'][$i]['image'] . '.png">
-    ' . $response['wk_verw'][$i]['min_temp'] . ' /  
-    ' . $response['wk_verw'][$i]['max_temp'] . ' ºC' . '
-   </div> 
-
-  <div id="width_day_forecast">
-   <img src="./assets/pics/arrow.png" style="transform: rotate('.($response['wk_verw'][$i]['windrgr']+90).'deg) scale(0.33)">' //wind 
-   . $response['wk_verw'][$i]['windbft'] . ' Bft' . '
-   </div>
-
-  <div id="width_day_forecast">
-   <img src="./assets/pics/regen.png">' 
-   . $response['wk_verw'][$i]['neersl_perc_dag'] . '%' .  // neerslagkans 
-  '</div>
-
- <div id="width_day_forecast">
-  <img src="./assets/pics/zon.png">'   
-  . $response['wk_verw'][$i]['zond_perc_dag'] . '%' . // kans op zon 
-  '</div>
-                
-  </div>';
-}
-
-echo '</div>
+</div>
 
  <div id="overlay" onclick="off()">
     <div id="text">
@@ -287,7 +298,7 @@ echo '</div>
         <img id="doc2" src="./assets/pics/Docu_2.png">
         <img id="doc1" src="./assets/pics/Docu_1.png">
         <img src="./assets/pics/artikel_aankondiging.png">
-
+Afbeeldingen zon: Isfan Wahyudi
 </div>
 </div>
 
@@ -303,10 +314,12 @@ echo '</div>
 
 <div class="last_check_block">
 
-<div id="last_check"> ' . $response['api'][0]['rest_verz'] . '</div>
+<div id="last_update"> Laatste update: ' . date('d-m-Y H:i' , $response['liveweer'][0]['timestamp']) . '</div>
 
 </div>
 </div>
+<div id="last_check"> ' . $response['api'][0]['rest_verz'] . '</div>
+
 </div>';
 
 ?>

@@ -91,16 +91,22 @@ body input {
 }
 
 .container_details, 
-.container_footer_blocks {
+.container_footer_blocks, 
+.container_sun {
     display: flex;
     width: 100%;
+}
+
+.container_sun {
+    height: 250px;
 }
 
 .container_details {
       margin: 5%;
 }
 
-.empty_block, 
+.empty_block,
+.temperature_now,
 .location_block,
 .about_block,
 .last_check_block, 
@@ -112,7 +118,7 @@ body input {
 
 table {
     margin: auto;
-    width: 250px;
+    width: 300px;
   /*  background-color: var(--blue2); */
 }
 /*
@@ -143,6 +149,7 @@ table {
 #current_temperature, 
 #minmax_temperature, 
 #feel_temperature,
+#wind_text,
 .sunriseset,
 #weer, 
 #last_check,
@@ -216,9 +223,17 @@ form #kompas {
     padding: 20px 0;
 }
 
-.container_arrow {
+.container_arrow, 
+.sunriseset {
     width: 50%;
-    margin: auto;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.sunriseset img {
+    margin: 2%;
+    width: 100px;
 }
 
 #arrow {
@@ -226,9 +241,21 @@ form #kompas {
     margin: auto;
     max-width: 100px;
     max-height: 50px;
-    background-color: null;
+    position: relative;
+
+    animation-name: movearrow;
+    animation-duration: 5s;
+    animation-iteration-count: 5;
 }
     
+@keyframes movearrow {
+ /*
+ 0%  {transform: 'translateX(0px)';transform: 'translateY(00px)';}
+ 100% {transform: 'translateX(50px)';transform: 'translateY(50px)';} 
+ */
+  0%  {left: 0px; top: 0px;}
+ 100% {left:50px; top: -50px;}   
+}
    
  #image  {
   transform: scale(2);
@@ -259,9 +286,6 @@ form #kompas {
 
 #last_update {
     text-align: right;
-    margin: 0 2%; 
-    font-size: 12px;
-    line-height: normal;
 }
 
 
