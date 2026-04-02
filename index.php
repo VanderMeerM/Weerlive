@@ -318,7 +318,7 @@ Afbeeldingen zon: Isfan Wahyudi
 
 </div>
 </div>
-<div id="last_check"> ' . $response['api'][0]['rest_verz'] . '</div>
+<div id="rest_num"> ' . $response['api'][0]['rest_verz'] . '</div>
 
 </div>';
 
