@@ -1,7 +1,7 @@
 
 :root {
-     --blue1: rgb(98 108 116); /* rgb(106, 181, 241); */
-     --blue2: #ababab; /* #494fc9; */
+     --gray1: rgb(98 108 116); /* rgb(106, 181, 241); */
+     --gray2: #ababab; /* #494fc9; */
 }
 
 body {
@@ -35,6 +35,7 @@ body input {
     display: flex;
 }
 
+.container_day_forecast_and_details,
 .day_forecast_container, 
 .hour_forecast_container, 
 .sunriseset {
@@ -44,8 +45,14 @@ body input {
    
  }
 
+.container_day_forecast_and_details {
+    margin: 2%;
+}
+
  .day_forecast_container {
     flex-direction: column;
+    margin: 1%;
+    width: 80%;
 }
 
  #width_day_forecast {
@@ -60,10 +67,10 @@ body input {
 .day_forecast, 
 .hour_forecast {
     display: flex;
-    background-color: var(--blue2);
+    background-color: var(--gray2);
     justify-content: center;
     color: white;
-   /* width: fit-content; */   
+    max-width: 500px;  
     padding: 5px;
     line-height: 1.6;
 }
@@ -72,12 +79,11 @@ body input {
     padding: 0px 25px;
     margin: 0 3px;
     flex-direction: column;
-    background-color: var(--blue1);
+    background-color: var(--gray1);
 }
 
 
 .main {
-    background-image: url('../pics/Background/Europa.png');
     height: 1140px; 
     max-width: 1450px;
     text-align: center;
@@ -97,12 +103,12 @@ body input {
     width: 100%;
 }
 
-.container_sun {
-    height: 250px;
+.container_footer_blocks {
+    margin-top: auto;
 }
 
-.container_details {
-      margin: 5%;
+.container_sun {
+    height: 250px;
 }
 
 .empty_block,
@@ -119,27 +125,7 @@ body input {
 table {
     margin: auto;
     width: 300px;
-  /*  background-color: var(--blue2); */
 }
-/*
-.main_container_data {
-    display: flex;
-    flex-direction: column; 
-    width: 250px;
-    margin: auto;
-    
-}
-
-.main_container_super_data, 
-.sunriseset {
-    display: flex;
-    
-}
-
-.main_container_temp {
-    margin: 0 25px;
-}
-*/
 
 .moon {
     display: flex;
@@ -152,7 +138,6 @@ table {
 #wind_text,
 .sunriseset,
 #weer, 
-#rest_num,
 #last_update,
 #morgen, #overmorgen, 
 #input, #location, 
@@ -169,6 +154,10 @@ table {
     text-align: center;
     }
 
+#wind_text {
+    margin: auto 0 0 0;
+    height: fit-content;
+}
 
 .info_details {
 width: 50%;
@@ -223,7 +212,7 @@ form #kompas {
     padding: 20px 0;
 }
 
-.container_arrow, 
+.main_container_arrow, 
 .sunriseset {
     width: 50%;
     justify-content: center;
@@ -238,28 +227,15 @@ form #kompas {
 
 #arrow {
     color: white;
-    margin: auto;
+    margin: 0 20%;
     max-width: 100px;
     max-height: 50px;
     position: relative;
-
-    animation-name: movearrow;
-    animation-duration: 3s;
-    animation-iteration-count: 5;
 }
     
-@keyframes movearrow {
- /*
- 0%  {transform: 'translateX(0px)';transform: 'translateY(00px)';}
- 100% {transform: 'translateX(50px)';transform: 'translateY(50px)';} 
- */
-  0%  {left: 0px; top: 0px;}
- 100% {left:80px; top: -30px;}   
-}
-   
+  
  #image  {
   transform: scale(2);
-  /*background-color: var(--blue2);*/
   width: fit-content;
   }
 
@@ -277,15 +253,14 @@ form #kompas {
 }
 
     
- #about, 
- #rest_num {
+ #about {
     text-decoration: none;
     z-index: 5;
     align-content: end;
  }
 
 #about, #last_update {
-    font-size: 12px;
+    font-size: 15px;
 }
 
 #last_update {
@@ -322,15 +297,22 @@ form #kompas {
                 display: none; 
                 }
         }
+    @media (max-width: 1400px) {
+
+        .day_forecast_container {
+            width: 100%;
+         }
+    }
+
+
+   @media (max-width: 1100px) {
+
+        #arrow_forecast_day {
+        display: none;
+    }
+    }
         
- @media (max-width: 1400px) {
-
-    body {
-        width: 100%;
-    }
-    }
-
- 
+  
   @media (max-width: 1000px) {
 
    
@@ -349,7 +331,7 @@ form #kompas {
                 }
             }
 
-@media (max-width: 750px) {
+@media (max-width: 900px) {
        
     #input, #location {
     text-align: left;
@@ -383,6 +365,11 @@ form #kompas {
     word-wrap: break-word;
 }
 
+.container_day_forecast_and_details {
+    flex-direction: column;
+    align-items: center;
+ }
+
     #overlay {
         position: fixed;
         margin: 0 auto;
@@ -404,8 +391,8 @@ form #kompas {
        -ms-transform: translate(-50%,-50%);
       }
 
-      #text img, 
-      #text #addition  {
+      #text img 
+       {
          display: none;
       }
 
@@ -426,6 +413,11 @@ form #kompas {
     .container_details {
         flex-direction: column;
     }
+
+    .info_details {
+        margin: 0;
+    }
+
     #arrow {
         padding:50px;
     }

@@ -79,6 +79,7 @@ $response = json_decode($response, true);
 
 include('./show_forecasts.php');
 
+$wind_bft = $response['liveweer']['0']['windbft'];
 
 /*
 
@@ -89,13 +90,29 @@ include('./show_forecasts.php');
   </div>
 */
 
+// Juiste achtergrond instellen..
+
+if ( (strtotime("now") > ($sunder_tstr- 60 * 30)) ||  (strtotime("now") < ($sup_tstr- 60 * 30)) ) {
+  $bgr_picture = '30';
+}
+else if ( (strtotime("now") > ($sunder_tstr- 60 * 15)) ||  (strtotime("now") < ($sup_tstr- 60 * 15)) ) {
+  $bgr_picture = '15';
+}
+else if ( (strtotime("now") > $sunder_tstr) ||  (strtotime("now") < $sup_tstr) ) {
+  $bgr_picture = '100';
+} 
+else {
+  $bgr_picture = '0';
+}
+
+
 echo '
 
   <audio id="rainsound">
     <source src="./assets/rain.mp3" type="audio/mpeg">
   </audio>
 
-<div class="main">';
+<div class="main" style="background-image: url(./assets/pics/Background/Europa_dark'.$bgr_picture.'.png)">';
 
 
 if ($_POST['place']) {
@@ -114,18 +131,44 @@ echo '
 <div class="sunriseset">
 <div><img src="./assets/pics/zonsopkomst.png">  ' . $response['liveweer'][0]['sup'] . '</div>
 <div><img src="./assets/pics/zonsondergang.png"> ' . $response['liveweer'][0]['sunder'] . '</div>
-</div>
-
-<div class="container_arrow">';
+</div>';
 
 $turndegr = floatval($response['liveweer']['0']['windrgr'])+90;
 
-echo '<div id="arrow" style= "transform: rotate('.$turndegr.'deg);"> 
+// Snelheid pijl bepalen (aan de hand van de windkracht)..
+
+ if ( ($wind_bft >= 0) && ($wind_bft) <= 3) {
+                  $speed = (3 - (0.5 * ($wind_bft - 1)));
+                }
+  else if ( ($wind_bft >= 4) && ($wind_bft) <= 10) {
+                $speed = (1.75 - (0.25 * ($wind_bft - 4)));
+                } 
+      else {
+        $speed = 0.15;
+      }
+              
+
+echo '
+<div class="main_container_arrow">
+
+<div class="container_arrow" style="transform: rotate('.$turndegr.'deg);">
+
+<div id="arrow" style= "animation: movearrow '.$speed.'s infinite;"> 
 <img src= "./assets/pics/arrow.png">
 </div>
+</div>';
 
+echo '
+<style>
+@keyframes movearrow {
+  from {left: 0px;}
+  to {left: 150px;}
+}
+</style>';
+
+echo '
 <div id="wind_text"> <img src="./assets/pics/wind_icon_w.png"> '
-. $response['liveweer']['0']['windbft'] . ' Bft </div>
+. $wind_bft . ' Bft </div>
 
 </div>
 </div>';
@@ -175,6 +218,8 @@ for ($i=0; $i < 24; $i++) {
 
 echo '</div>
 
+<div class="container_day_forecast_and_details">
+
 <div class="day_forecast_container">';
 
 for ($i=1; $i<5; $i++) {
@@ -194,7 +239,7 @@ for ($i=1; $i<5; $i++) {
    </div> 
 
   <div id="width_day_forecast">
-   <img src="./assets/pics/arrow.png" style="transform: rotate('.($response['wk_verw'][$i]['windrgr']+90).'deg) scale(0.33)">' //wind 
+   <img id="arrow_forecast_day" src="./assets/pics/arrow.png" style="transform: rotate('.($response['wk_verw'][$i]['windrgr']+90).'deg) scale(0.33)">' //wind 
    . $response['wk_verw'][$i]['windbft'] . ' Bft' . '
    </div>
 
@@ -212,7 +257,7 @@ for ($i=1; $i<5; $i++) {
 }
 
 
-echo '
+echo '</div>
 <div class="container_details">
 
 <div class="info_details">
@@ -241,7 +286,8 @@ Rel. luchtvochtigheid </td>
 </tr>
 </table>';
 
-//echo '</div>';
+echo '
+</div>';
 
 echo '</div></div>';
 
@@ -274,30 +320,27 @@ Weerwaarschuwing vanaf: ' . $response['liveweer']['0']['wrsch_g'] . '/'
 
 echo '
 </div>
-</div>
 
  <div id="overlay" onclick="off()">
     <div id="text">
       Deze weersite draag ik op aan mijn vader. <p>
-        Als kind was ik al geobsedeerd door de apparaten die in een donkere kamer op zolder stonden. 
-        Met behulp van een grote schotelantenne, die bij ons in de tuin stond opgesteld, ontving hij de gegevens van een weersatelliet en ontwikkelde hij de foto. De geluiden tijdens het ontvangen deden me denken aan de eerste internetmodems; om met een modern begrip te praten downloadde hij de foto eigenlijk - en dat in de jaren 80 toen internet nog niet eens bestond! De achtergrond van deze site toont een dergelijke foto die op 14 november 1980 is gemaakt door een NOAA-weersatelliet. <br>
+        Als kind was ik al geobsedeerd door de apparaten die in een donkere kamer bij ons thuis op zolder stonden. 
+        Met behulp van een grote schotelantenne, die bij ons in de tuin stond, ontving hij de gegevens van een weersatelliet en ontwikkelde hij de satellietfoto. De geluiden tijdens het ontvangen deden me denken aan de eerste internetmodems; om met een modern begrip te praten downloadde hij de foto - in een tijd dat internet nog niet eens bestond! De achtergrond van deze site toont een dergelijke foto die op 14 november 1980 is gemaakt door een NOAA-weersatelliet. <br>
         
         Mijn vader haalde met zijn hobby op 17 september 1988 zelfs
         <a style="color:white;" href="./assets/pics/krantartikel.png"> de regionale krant (De Limburger).</a>
 
-        <div id="addition">Met eveneens Jan als voornaam hadden we in Ulestraten dus eigenlijk onze eigen (legendarische) weerman Pelleboer!</p></div>
-      <p>
-        Vandaag de dag ontvang ik de meteogegevens middels een API van <a style="color:white;"
-          href="https://weerlive.nl" target="_blank">weerlive.nl</a> en verwerk ik ze in deze site. <br>
-        
-         Voor mij is de creatieve uitdaging om de droge kost aan informatie een beetje bijzonder te tonen. Zo is de pijl in de windrichting gedraaid en beweegt die met een snelheid, afhankelijk van de windkracht. 
-        Daarnaast wordt de achtergrondfoto donkerder, zodra de zon is ondergegaan en wordt de maan dan ook zichtbaar (ok, deze laatste functionaliteit heb ik niet zelf verzonnen).<p>
-        Mijn vader overleed in juli 2001. Ik houd op deze manier een mooie herinnering aan hem online.
+        <p>
+        Vandaag ontvang ik de meteogegevens middels een API van <a style="color:white;"
+          href="https://weerlive.nl" target="_blank">weerlive.nl</a> en verwerk ik ze in deze site. Voor mij is de creatieve uitdaging om de droge kost aan informatie een beetje bijzonder te tonen. Zo is de pijl in de windrichting gedraaid en beweegt die met een snelheid die afhankelijk is van de windkracht. 
+        Daarnaast wordt de achtergrondfoto donkerder, zodra de zon opkomt of ondergaat en wordt de maan zichtbaar (ok, deze laatste functionaliteit heb ik niet zelf verzonnen).<p>
+        Mijn vader overleed in juli 2001. Op deze manier houd ik een mooie herinnering aan hem online.
       <p>
 
         <img id="doc2" src="./assets/pics/Docu_2.png">
         <img id="doc1" src="./assets/pics/Docu_1.png">
         <img src="./assets/pics/artikel_aankondiging.png">
+<p><u>Disclaimer:</u> <br>
 Afbeeldingen zon: Isfan Wahyudi
 </div>
 </div>
@@ -314,12 +357,9 @@ Afbeeldingen zon: Isfan Wahyudi
 
 <div class="last_check_block">
 
-<div id="last_update"> Laatste update: ' . date('d-m-Y H:i' , $response['liveweer'][0]['timestamp']) . '</div>
+<div id="last_update"> Update: ' . date('H:i' , $response['liveweer'][0]['timestamp']) . ' / ' .$response['api'][0]['rest_verz'] .'</div>
 
 </div>
-</div>
-<div id="rest_num"> ' . $response['api'][0]['rest_verz'] . '</div>
-
 </div>';
 
 ?>

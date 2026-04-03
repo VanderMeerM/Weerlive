@@ -1,6 +1,8 @@
 
 <?php
 
+include ('./assets/variables.php');
+
 // Tijdstip zonsopgang en -ondergang naar timestamp converteren om maan wel/niet te tonen
 // (voor zonsopgang danwel na zonsondergang)..
 
