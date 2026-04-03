@@ -112,15 +112,6 @@ echo '
 </div> 
 
 </div>
-</div>';
-
-  /*
-  <div style="margin: auto">'  
-  . $response['uur_verw'][$i]['zond_perc_dag'] . '%' . // kans op zon 
-  '</div>
- */       
-  
-echo '
+</div>     
 </div></div>';
 
-//print_r($response['wk_verw']);

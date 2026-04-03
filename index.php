@@ -15,12 +15,9 @@
   
  <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
 
- <!--<script defer type="text/javascript" src="./assets/JS/weerlive.js"></script>-->
   <script defer type="text/javascript" src="./assets/JS/neerslag.js"></script>
-
   <script defer type="text/javascript" src="./assets/JS/moon.js"></script>
-  <!--<script defer type="text/javascript" src="./assets/JS/variables.js"></script>
-  <script defer type="text/javascript" src="./assets/JS/getWeatherByInput.js"></script> -->
+  
 </head>
 
 <body>
@@ -48,8 +45,6 @@ date_default_timezone_set('Europe/Amsterdam');
 require('./assets/api.php');
 
 include ('./assets/variables.php');
-
-//echo 'Plaats ' . $_POST['place'];
 
 if (!$_POST['place']) {
 
@@ -97,7 +92,7 @@ include('./show_forecasts.php');
 
 $wind_bft = $response['liveweer']['0']['windbft'];
 
-/*
+/* 'Regenmaker' 
 
  <div class="back-row-toggle splat-toggle">
   <div class="rain front-row"></div>
@@ -180,32 +175,14 @@ echo '
   from {left: 0px;}
   to {left: 150px;}
 }
-</style>';
+</style>
 
-echo '
 <div id="wind_text"> <img src="./assets/pics/wind_icon_w.png"> '
 . $wind_bft . ' Bft </div>
 
 </div>
-</div>';
+</div>
 
-/*
-<script defer>
-   document.getElementById('arrow').animate([
-                    { transform: 'translateX(50px)' },
-                    { transform: 'translateY(50px)' },
-
-                ],
-                    {
-                        duration: 5,
-                        iterations: 5,
-
-                    });
-</script>
-
-*/
-
-echo '
 <div class="hour_forecast_container">';
 
 for ($i=0; $i < 24; $i++) {
@@ -322,16 +299,6 @@ echo '
 Weerwaarschuwing vanaf: ' . $response['liveweer']['0']['wrsch_g'] . '/'
  . $response['0']['wrsch_gc'] . '';
 }         
-
-
-
-/*
-<div class="location_block">
-
-  <img id="kompas" onclick="getWeatherByLocation()" src="./assets/pics/kompas.png">
-
- </div>
-*/
 
 
 echo '
