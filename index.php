@@ -25,6 +25,22 @@
 
 <body>
 
+<!--  
+Direct pagina laden bij aanklikken tabblad in browser en 
+elk kwartier pagina herladen om gegevens te updaten..
+-->
+
+<script>
+  document.addEventListener("visibilitychange", function() {
+    if (!document.hidden){
+       window.location.reload();
+    }
+});
+      setTimeout(() => {
+       window.location.href = window.location;
+    }, 60 * 15 * 1000);
+</script>
+
 <?php
 
 date_default_timezone_set('Europe/Amsterdam');
