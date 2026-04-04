@@ -236,7 +236,7 @@ form #kompas {
   
  #image  {
   transform: scale(2);
-  width: fit-content;
+ /* width: fit-content; */
   }
 
 
@@ -296,7 +296,12 @@ form #kompas {
            #doc2 {
                 display: none; 
                 }
+
+            body {
+            width: 100%;
         }
+    }
+
     @media (max-width: 1400px) {
 
         .day_forecast_container {
@@ -333,22 +338,19 @@ form #kompas {
 
 @media (max-width: 900px) {
        
-    #input, #location {
+  /*  #input, #location {
     text-align: left;
     margin-left: 20px;
         }
-
+*/
     #input {
            margin-bottom: 10px;
           }
 
     #location {
-            margin: 0 10px;
+           /* margin: 0 10px; */
+            text-align: center;
         }
-
-    #image {
-        margin-left: 85px;
-    }
 
     
     #arrow {
