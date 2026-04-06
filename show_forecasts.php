@@ -29,7 +29,7 @@ echo '
 
 <div class="container_temperature">
 
-<div class="empty_block"></div>
+<div class="empty_block_up"></div>
 
 <div class="temperature_now"> 
 

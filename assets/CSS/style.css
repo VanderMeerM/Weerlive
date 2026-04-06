@@ -18,7 +18,8 @@ body input {
 
 
 #input_place, 
-#input_coordinates {
+#input_coordinates,
+#short_text {
     display: none;
 }
 
@@ -111,8 +112,9 @@ body input {
     height: 250px;
 }
 
-.empty_block,
-.temperature_now,
+.empty_block_up,
+.empty_block_down,
+/* .temperature_now, */
 .location_block,
 .about_block,
 .last_check_block, 
@@ -265,6 +267,7 @@ form #kompas {
 
 #last_update {
     text-align: right;
+    margin-right: 5px;
 }
 
  #overlay {
@@ -334,6 +337,10 @@ form #kompas {
              #doc1 {
                 display: none; 
                 }
+
+                .moon {
+                    justify-content: left;
+                }
             }
 
 @media (max-width: 900px) {
@@ -361,8 +368,7 @@ form #kompas {
    }
 
    #weer {
-    font-size: normal;
-    text-align: left;
+    text-align: center;
     max-width: 700px;
     word-wrap: break-word;
 }
@@ -404,12 +410,17 @@ form #kompas {
 
  
     }
+@media (max-width: 600px) {
+       .empty_block_up {
+        width: 0%;
+    }
+}
 
 @media (min-width: 550px) {
     #text {
         font-size: large;
     }
-}
+ }
 
 @media (max-width: 500px) {
     .container_details {
@@ -422,6 +433,14 @@ form #kompas {
 
     #arrow {
         padding:50px;
+    }
+
+    #long_text {
+        display: none;
+    }
+
+    #short_text {
+        display: block;
     }
 
 }

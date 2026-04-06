@@ -103,19 +103,19 @@ $wind_bft = $response['liveweer']['0']['windbft'];
 
 // Juiste achtergrond instellen..
 
-if ( (strtotime("now") > ($sunder_tstr- 60 * 30)) ||  (strtotime("now") < ($sup_tstr- 60 * 30)) ) {
+if ( (strtotime("now") > $sunder_tstr) ||  (strtotime("now") < $sup_tstr) ) {
+  $bgr_picture = '100';
+}  
+else if ( ((strtotime("now") + (60 * 30)) > $sunder_tstr ) ||  ((strtotime("now") + (60 * 30)) < $sup_tstr) ) {
   $bgr_picture = '30';
 }
-else if ( (strtotime("now") > ($sunder_tstr- 60 * 15)) ||  (strtotime("now") < ($sup_tstr- 60 * 15)) ) {
+else if ( ((strtotime("now") + (60 * 15)) > $sunder_tstr ) ||  ((strtotime("now") + (60 * 15)) < $sup_tstr) ) {
   $bgr_picture = '15';
 }
-else if ( (strtotime("now") > $sunder_tstr) ||  (strtotime("now") < $sup_tstr) ) {
-  $bgr_picture = '100';
-} 
+
 else {
   $bgr_picture = '0';
 }
-
 
 echo '
 
@@ -286,7 +286,8 @@ echo '</div></div>';
 
 echo '<div class="weather_warning">
 
-' . $response['liveweer']['0']['ltekst'] . '<br>';
+<div id="long_text">' . $response['liveweer']['0']['ltekst'] . '</div>
+<div id="short_text">' . $response['liveweer']['0']['lkop'] .  '</div>';
 
 
 if ($response['liveweer']['0']['alarm'] != 0) {
@@ -330,7 +331,7 @@ Afbeeldingen zon: Isfan Wahyudi
 
 <div class="container_footer_blocks">
 
-<div class="empty_block"></div>
+<div class="empty_block_down"></div>
 
 <div class="about_block">
 
@@ -340,7 +341,7 @@ Afbeeldingen zon: Isfan Wahyudi
 
 <div class="last_check_block">
 
-<div id="last_update"> Update: ' . date('H:i' , $response['liveweer'][0]['timestamp']) . ' / ' .$response['api'][0]['rest_verz'] .'</div>
+<div id="last_update"> Update: ' . date('H:i' , $response['liveweer'][0]['timestamp']) . '/' .$response['api'][0]['rest_verz'] .'</div>
 
 </div>
 </div>';
