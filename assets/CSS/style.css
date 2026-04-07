@@ -270,7 +270,8 @@ form #kompas {
     margin-right: 5px;
 }
 
- #overlay {
+ #overlay_about, 
+ #overlay_ww {
     position: fixed;
     display: none;
     width: 80%;
@@ -281,8 +282,15 @@ form #kompas {
     z-index: 8;
     cursor: pointer;
   }
+
+  #overlay_ww {
+    height: 50%;
+    bottom: 25%;
+    background-color: rgb(139 135 135 / 80%);
+}
   
-  #text{
+  #text_about, 
+  #long_text_ww {
     position: absolute;
     /*background-image: url('./pics/artikel_aankondiging_small.png');*/
     top: 45%;
@@ -293,6 +301,7 @@ form #kompas {
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
   }
+
 
   @media (max-width: 1550px) {
 
@@ -324,13 +333,13 @@ form #kompas {
   @media (max-width: 1000px) {
 
    
-        #text{
+        #text_about{
             font-size: small;
              top: 50%;
              left: 55%;
             }
 
-           #text img {
+           #text_about img {
             padding-right: 10px;
              }  
 
@@ -378,7 +387,7 @@ form #kompas {
     align-items: center;
  }
 
-    #overlay {
+    #overlay_about {
         position: fixed;
         margin: 0 auto;
         display: none;
@@ -390,7 +399,7 @@ form #kompas {
         top: 0%;
     }
             
-     #text{
+     #text_about{
        position: absolute;
        font-size: normal;
        top: 50%;
@@ -399,7 +408,7 @@ form #kompas {
        -ms-transform: translate(-50%,-50%);
       }
 
-      #text img 
+      #text_about img 
        {
          display: none;
       }
@@ -417,7 +426,7 @@ form #kompas {
 }
 
 @media (min-width: 550px) {
-    #text {
+    #text_about {
         font-size: large;
     }
  }
