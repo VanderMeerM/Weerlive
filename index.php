@@ -103,15 +103,21 @@ $wind_bft = $response['liveweer']['0']['windbft'];
 
 // Juiste achtergrond instellen..
 
-if ( (strtotime("now") > $sunder_tstr) ||  (strtotime("now") < $sup_tstr) ) {
-  $bgr_picture = '100';
-}  
-else if ( ((strtotime("now") + (60 * 30)) > $sunder_tstr ) ||  ((strtotime("now") + (60 * 30)) < $sup_tstr) ) {
-  $bgr_picture = '30';
-}
-else if ( ((strtotime("now") + (60 * 15)) > $sunder_tstr ) ||  ((strtotime("now") + (60 * 15)) < $sup_tstr) ) {
+if ( ( ($sunder_tstr - strtotime("now") > 0) && ($sunder_tstr - strtotime("now") <= (60 * 15)) ) || 
+
+    ( ($sup_tstr - strtotime("now") > 0) && ($sup_tstr - strtotime("now") <= (60 * 15)) ) ) {
   $bgr_picture = '15';
 }
+
+else if ( ( ($sunder_tstr - strtotime("now") > (60 * 15)) && ($sunder_tstr - strtotime("now") <= (60 * 30)) ) || 
+
+    ( ($sup_tstr - strtotime("now") > (60 * 15)) && ($sup_tstr - strtotime("now") <= (60 * 30)) ) ) {
+  $bgr_picture = '30';
+}
+
+else if ( (strtotime("now") > $sunder_tstr) ||  (strtotime("now") < $sup_tstr) ) {
+  $bgr_picture = '100';
+}  
 
 else {
   $bgr_picture = '0';
@@ -140,8 +146,8 @@ echo '
 <div class="container_sun">
 
 <div class="sunriseset">
-<div><img src="./assets/pics/zonsopkomst.png">  ' . $response['liveweer'][0]['sup'] . '</div>
-<div><img src="./assets/pics/zonsondergang.png"> ' . $response['liveweer'][0]['sunder'] . '</div>
+<div id="sunrise"><img src="./assets/pics/zonsopkomst.png">  ' . $response['liveweer'][0]['sup'] . '</div>
+<div id="sunset"><img src="./assets/pics/zonsondergang.png"> ' . $response['liveweer'][0]['sunder'] . '</div>
 </div>';
 
 $turndegr = floatval($response['liveweer']['0']['windrgr'])+90;
@@ -201,7 +207,7 @@ for ($i=0; $i < 24; $i++) {
     
     </div> 
     
-   <div style="display: inline-flex">
+   <div style="display: flex; align-items: center;">
      <img src="./assets/pics/regen.png">'  
    . $response['uur_verw'][$i]['neersl'] . '%' . // neerslagkans 
 

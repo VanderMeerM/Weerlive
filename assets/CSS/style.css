@@ -54,10 +54,21 @@ body input {
     flex-direction: column;
     margin: 1%;
     width: 80%;
+    flex-wrap: wrap;
+    align-content: center;
 }
 
- #width_day_forecast {
+ #width_day_forecast, 
+ #sunrise, 
+ #sunset {
     padding: 0 5px;
+    display: flex;
+    align-items: center;
+ }
+
+ #sunrise, 
+ #sunset {
+    padding: 10px 5px;
  }
 
  .hour_forecast_container {
@@ -217,9 +228,9 @@ form #kompas {
 .main_container_arrow, 
 .sunriseset {
     width: 50%;
-    justify-content: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .sunriseset img {
@@ -425,15 +436,15 @@ form #kompas {
     }
 }
 
-@media (min-width: 550px) {
+
+@media (max-width: 500px) { 
+    
     #text_about {
         font-size: large;
     }
- }
-
-@media (max-width: 500px) {
     .container_details {
         flex-direction: column;
+        width:fit-content;
     }
 
     .info_details {
