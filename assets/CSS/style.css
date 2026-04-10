@@ -32,8 +32,17 @@ body input {
     width: 80%;
 }
 
-.container_temperature {
+.container_temperature 
+{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.temperature_now {
+    display: flex;
+    width: 80%;
+    margin:auto;
 }
 
 .container_day_forecast_and_details,
@@ -123,9 +132,7 @@ body input {
     height: 250px;
 }
 
-.empty_block_up,
 .empty_block_down,
-/* .temperature_now, */
 .location_block,
 .about_block,
 .last_check_block, 
@@ -430,13 +437,6 @@ form #kompas {
 
  
     }
-@media (max-width: 600px) {
-       .empty_block_up {
-        width: 0%;
-    }
-}
-
-
 @media (max-width: 500px) { 
     
     #text_about {

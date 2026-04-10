@@ -6,6 +6,7 @@ function load_moon_phases(obj) {
     }
     let xmlhttp = new XMLHttpRequest()
     let url = "https://www.icalendar37.net/lunar/api/?" + gets.join("&")
+    console.log(url)
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             let moon = JSON.parse(xmlhttp.responseText)

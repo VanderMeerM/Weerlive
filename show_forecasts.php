@@ -27,10 +27,11 @@ $sunder_tstr = strtotime("today") + $hour_sunder_tstr + $min_sunder_tstr;
 
 echo '
 
-<div class="container_temperature">
+<div class="container_temperature">';
 
-<div class="empty_block_up"></div>
+//<div class="empty_block_up"></div>
 
+echo '
 <div class="temperature_now"> 
 
 <table>
@@ -98,20 +99,21 @@ echo '<div id="current_temperature" style="color: '.$color.'">' . $response['liv
 <td></td>
 </tr>
 
-</table>
+</table>';
 
-</div>
-
-<div class="moon_block">';
+// Toon maan alleen voor resp. na zonsop-/ondergang... 
 
 if ( ($sup_tstr > strtotime('now')) || ($sunder_tstr < strtotime('now')) ) {
-echo '<div id="moon"></div>';
+echo '
+<div class="moon_block">
+<div id="moon"></div>
+</div>';
 }
 
 echo '
-</div> 
-
+</div>
 </div>
 </div>     
-</div></div>';
+</div>
+</div>';
 
