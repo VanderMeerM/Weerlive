@@ -336,7 +336,7 @@ echo '
 
 <div class="last_check_block">
 
-<div id="last_update"> Geüpdatet: ' . date('H:i' , $response['liveweer'][0]['timestamp']) '</div>
+<div id="last_update"> Geüpdatet: ' . date('H:i' , $response['liveweer'][0]['timestamp']) . '</div>
 
 </div>
 </div>';
