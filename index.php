@@ -132,13 +132,13 @@ echo '
 <div class="main" style="background-image: url(./assets/pics/Background/Europa_dark'.$bgr_picture.'.png)">';
 
 
-if (trim($_POST['place'])) {
+//if (trim($_POST['place'])) {
 echo '
 <form id="getCoordinates" name="getCoordinates" method="post">
   <input id="input_coordinates" type="text" name="coordinates">
   <input type="image" id="kompas" src="./assets/pics/kompas.png"> 
 </form>';
-}
+//}
 
 echo '
 <div id="weer"> '. $response['liveweer'][0]['verw'] . ' </div>
@@ -336,10 +336,14 @@ echo '
 
 <div class="last_check_block">
 
-<div id="last_update"> Update: ' . date('H:i' , $response['liveweer'][0]['timestamp']) . '/' .$response['api'][0]['rest_verz'] .'</div>
+<div id="last_update"> Geupdatet: ' . date('H:i' , $response['liveweer'][0]['timestamp']) . $response['api'][0]['rest_verz'] .'</div>
 
 </div>
 </div>';
+
+if ($response['api'][0]['rest_verz'] < 250) {
+include('./assets/send_mail_rest_num.php');
+}
 
 ?>
 
