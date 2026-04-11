@@ -342,7 +342,7 @@ echo '
 </div>';
 
 if ($response['api'][0]['rest_verz'] < 250) {
-include('./assets/send_mail_rest_num.php');
+include('./send_mail_rest_num.php');
 }
 
 ?>
