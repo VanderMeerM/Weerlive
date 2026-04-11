@@ -336,12 +336,12 @@ echo '
 
 <div class="last_check_block">
 
-<div id="last_update"> Geupdatet: ' . date('H:i' , $response['liveweer'][0]['timestamp']) . $response['api'][0]['rest_verz'] .'</div>
+<div id="last_update"> Geüpdatet: ' . date('H:i' , $response['liveweer'][0]['timestamp']) '</div>
 
 </div>
 </div>';
 
-if ($response['api'][0]['rest_verz'] < 250) {
+if ($response['api'][0]['rest_verz'] == 50) {
 include('./send_mail_rest_num.php');
 }
 
