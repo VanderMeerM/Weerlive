@@ -2,9 +2,9 @@
 .rain {
 position: absolute;
 left: 0;
-top: 350px;
+top: 150px;
 width: 100%; 
-height: 100%;
+height: 5%;
 z-index: 2;
 }
 /*
@@ -22,11 +22,11 @@ display: block;
 
 .drop {
 position: absolute;
-bottom: 100%;
+/*bottom: 50%; */
 width: 15px;
 height: 120px;
 pointer-events: none;
-animation: drop 0.5s linear 10;
+animation: drop 0.5s linear infinite;
 }
 
 @keyframes drop {
@@ -34,10 +34,10 @@ animation: drop 0.5s linear 10;
 transform: translateY(0vh);
 }
 75% {
-transform: translateY(90vh);
+transform: translateY(20vh);
 }
 100% {
-transform: translateY(90vh);
+transform: translateY(20vh);
 }
 }
 
@@ -45,8 +45,8 @@ transform: translateY(90vh);
 width: 1px;
 height: 60%;
 margin-left: 7px;
-background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
-animation: stem 0.5s linear 10;
+background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(14, 46, 189, 0.25));
+animation: stem 0.5s linear infinite;
 }
 
 @keyframes stem {
@@ -71,7 +71,7 @@ border-top: 2px dotted rgba(255, 255, 255, 0.5);
 border-radius: 50%;
 opacity: 1;
 transform: scale(0);
-animation: splat 0.5s linear 10;
+animation: splat 0.5s linear infinite;
 display: none;
 }
 

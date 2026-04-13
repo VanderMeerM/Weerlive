@@ -13,16 +13,25 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300&display=swap" rel="stylesheet">
   
- <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
 
-  <script defer type="text/javascript" src="./assets/JS/neerslag.js"></script>
+  <script type="text/javascript" src="./assets/JS/rain.js"></script>
+  <script type="text/javascript" src="./assets/JS/snow.js"></script>
+
   <script defer type="text/javascript" src="./assets/JS/moon.js"></script>
   
 </head>
 
 <body>
 
-<!--  
+<!-- To do
+
+sneeuwanimatie
+maan 
+tijden zonsopkomst/-ondergang
+-->
+
+<!-- 
 Direct pagina laden bij aanklikken tabblad in browser en 
 elk kwartier pagina herladen om gegevens te updaten..
 -->
@@ -92,30 +101,23 @@ include('./show_forecasts.php');
 
 $wind_bft = $response['liveweer']['0']['windbft'];
 
-/* 'Regenmaker' 
-
- <div class="back-row-toggle splat-toggle">
-  <div class="rain front-row"></div>
-  <div class="rain back-row"></div>
-  <div class="toggles"></div>
-  </div>
-*/
 
 // Juiste achtergrond instellen..
 
-if ( ( ($sunder_tstr - strtotime("now") > 0) && ($sunder_tstr - strtotime("now") <= (60 * 15)) ) || 
+
+if ( ( (strtotime("now") < ($sunder_tstr + (60 * 15))) && ( (strtotime("now") - $sunder_tstr) > 0 ) )  || 
 
     ( ($sup_tstr - strtotime("now") > 0) && ($sup_tstr - strtotime("now") <= (60 * 15)) ) ) {
   $bgr_picture = '15';
 }
 
-else if ( ( ($sunder_tstr - strtotime("now") > (60 * 15)) && ($sunder_tstr - strtotime("now") <= (60 * 30)) ) || 
+else if ( ( (strtotime("now") < ($sunder_tstr + (60 * 30))) && ( (strtotime("now") - $sunder_tstr) > 0 ) )  || 
 
     ( ($sup_tstr - strtotime("now") > (60 * 15)) && ($sup_tstr - strtotime("now") <= (60 * 30)) ) ) {
   $bgr_picture = '30';
 }
 
-else if ( (strtotime("now") > $sunder_tstr) ||  (strtotime("now") < $sup_tstr) ) {
+else if ( (strtotime("now") > ($sunder_tstr + (60 * 30)) ) ||  (strtotime("now") < $sup_tstr) ) {
   $bgr_picture = '100';
 }  
 
@@ -124,10 +126,6 @@ else {
 }
 
 echo '
-
-  <audio id="rainsound">
-    <source src="./assets/rain.mp3" type="audio/mpeg">
-  </audio>
 
 <div class="main" style="background-image: url(./assets/pics/Background/Europa_dark'.$bgr_picture.'.png)">';
 
@@ -341,6 +339,8 @@ echo '
 </div>
 </div>';
 
+// mailen bij 50 resterende requests..
+
 if ($response['api'][0]['rest_verz'] == 50) {
 include('./send_mail_rest_num.php');
 }
@@ -384,7 +384,6 @@ function showAbout() {
 function hideAbout() {
     document.getElementById("overlay_about").style.display = "none";
 }
-
 
 </script>
 

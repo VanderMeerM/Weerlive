@@ -29,6 +29,36 @@ echo '
 
 <div class="container_temperature">';
 
+// Regen- of sneeuwanimatie tonen (afhankelijk van weersgeteldheid).. 
+
+if ($response['liveweer'][0]['image'] === 'regen' ||
+$response['liveweer'][0]['image'] === 'buien') {
+
+echo '
+<div class="back-row-toggle splat-toggle">
+  <div class="rain front-row"></div>
+  <div class="rain back-row"></div>
+  <div class="toggles"></div>
+  </div>
+  
+  <audio id="rainsound">
+    <source src="./assets/rain.mp3" type="audio/mpeg">
+  </audio>
+  
+  <script>
+  letItRain();
+  </script>';
+}
+
+if ($response['liveweer'][0]['image'] === 'sneeuw') {
+
+echo '
+<script>
+console.log("Het sneeuwt!");
+</script>';
+}
+//snowStorm() werkt (nog) niet..
+
 //<div class="empty_block_up"></div>
 
 echo '
@@ -69,6 +99,7 @@ echo '
 <tr>
 <td>
 <div class="container_temperature">';
+
 
 // Kleur (gevoels)temperatuur instellen 
 
