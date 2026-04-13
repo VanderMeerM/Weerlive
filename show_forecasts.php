@@ -41,10 +41,6 @@ echo '
   <div class="toggles"></div>
   </div>
   
-  <audio id="rainsound">
-    <source src="./assets/rain.mp3" type="audio/mpeg">
-  </audio>
-  
   <script>
   letItRain();
   </script>';
