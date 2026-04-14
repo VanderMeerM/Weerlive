@@ -39,6 +39,7 @@ body input {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    max-width: 1450px;
 }
 
 .temperature_now {
