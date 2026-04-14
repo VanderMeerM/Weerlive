@@ -17,9 +17,7 @@
 
   <script type="text/javascript" src="./assets/JS/rain.js"></script>
   <script type="text/javascript" src="./assets/JS/snow.js"></script>
-
-  <script defer type="text/javascript" src="./assets/JS/moon.js"></script>
-  
+ 
 </head>
 
 <body>
@@ -107,13 +105,15 @@ $wind_bft = $response['liveweer']['0']['windbft'];
 
 if ( ( (strtotime("now") < ($sunder_tstr + (60 * 15))) && ( (strtotime("now") - $sunder_tstr) > 0 ) )  || 
 
-    ( ($sup_tstr - strtotime("now") > 0) && ($sup_tstr - strtotime("now") <= (60 * 15)) ) ) {
+( ($sup_tstr - strtotime("now") > (60 * 15)) && ($sup_tstr - strtotime("now") <= (60 * 30)) ) ) {
+
   $bgr_picture = '15';
 }
 
 else if ( ( (strtotime("now") < ($sunder_tstr + (60 * 30))) && ( (strtotime("now") - $sunder_tstr) > 0 ) )  || 
 
-    ( ($sup_tstr - strtotime("now") > (60 * 15)) && ($sup_tstr - strtotime("now") <= (60 * 30)) ) ) {
+    ( ($sup_tstr - strtotime("now") > 0) && ($sup_tstr - strtotime("now") <= (60 * 15)) ) ) {
+
   $bgr_picture = '30';
 }
 

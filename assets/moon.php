@@ -3,47 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Maantest</title>
+   <link rel="stylesheet" href="./assets/CSS/style.css">
+
 </head>
 <body>
     
-<style>
-
-    .container_moon {
-    display: flex;
-    padding: 50px;
-    margin: auto;
-    background-color: blue;
-    width: fit-content;
-    position: relative;
-    }
-
-.moon, 
-.shade {
-  height: 50px;
-  width: 50px;
-  background-color: white;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.shade {
-    background-color: blue; /* bbb; */
-    position: absolute;
- }
-
- .last_quarter {
-    transform: translate(25px);
-    border-radius: 0 20px 20px 0;
-}
-
-.first_quarter {
-    transform: translate(-25px);
-    border-radius: 20px 0 0 20px;
-}
-
-</style>
-
 <?php 
 
 $curl = curl_init();
@@ -69,25 +34,31 @@ $response = curl_exec($curl);
 
 $response = json_decode($response, true); 
 
-print_r($response);
+//print_r($response);
 
 $illumination_perc = (explode('%', $response['illumination'])[0]) / 100;
 $moon_stage = $response['stage'];
 
 
+echo '
+<div class="container_moon">
+<div class="moon"></div>';
+
 if ($illumination_perc < 50) {
 
    $moon_stage === 'waning' ? $shade_move = 50 + ($illumination_perc * 50):
    $shade_move = 50 - ($illumination_perc * 50);
-};
 
 echo '
+<div class="shade" style=left:'. $shade_move .'px></div>';
+}
 
-<div class="container_moon">
-<div class="moon"></div>
-<div class="shade" style=left:'. $shade_move .'px></div>
+else {
+    echo '<div class="oval_shade"></div>';
+}
+
+echo '
 </div>
-
 
 </body>
 </html>';

@@ -27,7 +27,10 @@ $sunder_tstr = strtotime("today") + $hour_sunder_tstr + $min_sunder_tstr;
 
 echo '
 
-<div class="container_temperature">';
+<div class="main_container_temperature"
+' . (($sup_tstr > strtotime('now')) || $sunder_tstr < (strtotime('now') + (60 * 30)) ? 'style="background-color: var(--black)"' : 
+'style="background-color: white"') . '
+>'; 
 
 // Regen- of sneeuwanimatie tonen (afhankelijk van weersgeteldheid).. 
 
@@ -63,18 +66,31 @@ echo '
 <table>
 <tr>
 <td>
- <div id="location">' . $response['liveweer'][0]['plaats'] . '</div>';
+ <div id="location" 
+ ' . (($sup_tstr > strtotime('now')) || $sunder_tstr < (strtotime('now') + (60 * 30)) ? 'style="color: white"' : null) . '
+ >' . $response['liveweer'][0]['plaats'] . '</div>';
+
+ // '. ($_GET['id'] ? 'style="display:flex"' : null) . '
 
 if (!$_POST['place']) {
-  echo '<div id="gps"> (GPS) </div>';
+  echo '<div id="gps"
+   ' . (($sup_tstr > strtotime('now')) || $sunder_tstr < (strtotime('now') + (60 * 30)) ? 'style="color: white"' : null) . '
+> (GPS) </div>';
 }
  
+if (($sup_tstr > strtotime('now')) || $sunder_tstr < (strtotime('now') + (60 * 30))) { 
+$weather_icon_src = '-wit';
+}
+else {
+  $weather_icon_src = '_zw';
+  }
+
 echo '
 </td>
 
 <td> 
 <div id="image">
- <img src="./assets/iconen-weerlive_zw/' . $response['liveweer'][0]['image'] . '.png">
+ <img src="./assets/iconen-weerlive'.$weather_icon_src.'/' . $response['liveweer'][0]['image'] . '.png">
 </div>
 </td>
 </tr>
@@ -94,12 +110,15 @@ echo '
 
 <tr>
 <td>
-<div class="container_temperature">';
-
+<div class="container_temperature">'; 
 
 // Kleur (gevoels)temperatuur instellen 
 
 $color = null;
+
+if (($sup_tstr > strtotime('now')) || $sunder_tstr < (strtotime('now') + (60 * 30))) { 
+$color = 'white';
+}
 
 if (floatval($response['liveweer'][0]['gtemp']) <= 5) {
   $color = '#16b7eb';
@@ -119,7 +138,9 @@ echo '<div id="current_temperature" style="color: '.$color.'">' . $response['liv
 
 <tr>
 <td>
-<div id="minmax_temperature"> ' . $response['wk_verw'][0]['min_temp'] . ' / ' . $response['wk_verw'][0]['max_temp'] . ' ºC </div>
+<div id="minmax_temperature"
+ ' . (($sup_tstr > strtotime('now')) || $sunder_tstr < (strtotime('now') + (60 * 30)) ? 'style="color: white"' : null) . '
+> ' . $response['wk_verw'][0]['min_temp'] . ' / ' . $response['wk_verw'][0]['max_temp'] . ' ºC </div>
 <div id="feel_temperature" style="color: '.$color.'"> voelt als: ' . $response['liveweer'][0]['gtemp'] . ' ºC</div>
 </div>
 </td>
@@ -130,11 +151,11 @@ echo '<div id="current_temperature" style="color: '.$color.'">' . $response['liv
 
 // Toon maan alleen voor resp. na zonsop-/ondergang... 
 
-if ( ($sup_tstr > strtotime('now')) || ($sunder_tstr < strtotime('now')) ) {
+if ( ($sup_tstr > strtotime('now')) || ($sunder_tstr < (strtotime('now') + (60 * 30))) ) {
 echo '
-<div class="moon_block">
-<div id="moon"></div>
-</div>';
+<div class="moon_block">';
+include ('./assets/moon.php');
+echo '</div>';
 }
 
 echo '

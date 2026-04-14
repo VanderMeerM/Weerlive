@@ -2,6 +2,7 @@
 :root {
      --gray1: rgb(98 108 116); /* rgb(106, 181, 241); */
      --gray2: #ababab; /* #494fc9; */
+     --black: #000;
 }
 
 body {
@@ -32,6 +33,7 @@ body input {
     width: 80%;
 }
 
+.main_container_temperature,
 .container_temperature 
 {
     display: flex;
@@ -44,6 +46,51 @@ body input {
     width: 80%;
     margin:auto;
 }
+
+/* mbt maan */
+
+  .container_moon {
+    display: flex;
+    padding: 30px 50px;
+    margin: auto;
+    width: fit-content;
+    position: relative;
+    }
+
+.moon, 
+.shade, 
+.oval_shade {
+  height: 50px;
+  width: 50px;
+  background-color: white;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.shade, 
+.oval_shade {
+    background-color: var(--black); /* bbb; */
+    position: absolute;
+ }
+
+.oval_shade {
+  width: 30px;
+  background-color: white;
+  z-index: 3;
+ }
+
+ .last_quarter {
+    transform: translate(25px);
+    border-radius: 0 20px 20px 0;
+}
+
+.first_quarter {
+    transform: translate(-25px);
+    border-radius: 20px 0 0 20px;
+}
+
+/* Einde maan */
+
 
 .container_day_forecast_and_details,
 .day_forecast_container, 
@@ -110,8 +157,6 @@ body input {
     text-align: center;
     display: flex;
     flex-direction: column;
- 
-    /*  background-color: #a39080; */
     background-repeat: no-repeat;
     background-position: center;
    
@@ -203,9 +248,11 @@ text-align: left;
     text-align: center;
 }
 
+/*
 #moon {
     margin-top: 10px;
- }      
+ }
+*/      
 
 .main #input, 
 .main #location {
