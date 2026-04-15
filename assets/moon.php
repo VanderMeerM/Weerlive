@@ -13,7 +13,7 @@
 
 $curl = curl_init();
 
-$cur_url = 'https://moon-phase.p.rapidapi.com/basic';
+$cur_url = 'https://moon-phase.p.rapidapi.com/basic?lat='.$_GET['lat'].'&lon='.$_GET['long'];
 
 curl_setopt_array($curl, array(
   CURLOPT_URL => $cur_url,
@@ -33,8 +33,6 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 
 $response = json_decode($response, true); 
-
-//print_r($response);
 
 $illumination_perc = (explode('%', $response['illumination'])[0]) / 100;
 $moon_stage = $response['stage'];
