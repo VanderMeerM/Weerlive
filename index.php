@@ -36,16 +36,32 @@ elk kwartier pagina herladen om gegevens te updaten..
 
 <script>
   document.addEventListener("visibilitychange", function() {
-    if (!document.hidden){
-       window.location.reload();
+    
+  if (!document.hidden){
+
+      if (window.location.href.split('?plaats=')[1] != null) {
+         window.location.href = window.location;
+      }
+      else {
+      window.location.href = './';
+      }
     }
 });
+    
       setTimeout(() => {
-       window.location.href = window.location;
+      if (window.location.href.split('?plaats=')[1] != null) {
+         window.location.href = window.location;
+      }
+      else {
+      window.location.href = './';
+      }
     }, 60 * 15 * 1000);
+    
 </script>
 
 <?php
+
+
 
 date_default_timezone_set('Europe/Amsterdam');
 
@@ -53,7 +69,7 @@ require('./assets/api.php');
 
 include ('./assets/variables.php');
 
-if (!$_POST['place']) {
+if (!$_GET['plaats']) {
 
 if ( (!$_GET['lat']) && (!$_GET['long']) ) {
 
@@ -63,14 +79,14 @@ $location = $_GET['lat'] + ',' + $_GET['long'];
 
 }
 
-elseif (!$_POST['place']) {
+elseif (!$_GET['plaats']) {
 
   $location = $_GET['lat'] . ',' . $_GET['long']; 
 
 }
 }
-else {
-  $location = trim($_POST['place']);
+elseif ($_GET['plaats']) {
+  $location = trim($_GET['plaats']);
 }
 
 
@@ -130,15 +146,12 @@ echo '
 <div class="main" style="background-image: url(./assets/pics/Background/Europa_dark'.$bgr_picture.'.png)">';
 
 
-//if (trim($_POST['place'])) {
 echo '
-<form id="getCoordinates" name="getCoordinates" method="post">
+<form method="post" action="./">
   <input id="input_coordinates" type="text" name="coordinates">
   <input type="image" id="kompas" src="./assets/pics/kompas.png"> 
-</form>';
-//}
+</form>
 
-echo '
 <div id="weer"> '. $response['liveweer'][0]['verw'] . ' </div>
 
 <div class="container_sun">

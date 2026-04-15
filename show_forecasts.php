@@ -72,7 +72,7 @@ echo '
 
  // '. ($_GET['id'] ? 'style="display:flex"' : null) . '
 
-if (!$_POST['place']) {
+if (!$_GET['plaats']) {
   echo '<div id="gps"
    ' . (($sup_tstr > strtotime('now')) || $sunder_tstr < (strtotime('now') + (60 * 30)) ? 'style="color: white"' : null) . '
 > (GPS) </div>';
@@ -99,8 +99,8 @@ echo '
 <td> 
 <div id="input">
 
-  <form method="post" action="./">
-     <input id="place" name="place" placeholder="Voer een plaats in Nederland in..."><br>
+  <form method="get" action="./?plaats='.$_GET['plaats'].'">
+     <input id="plaats" name="plaats" placeholder="Voer een plaats in Nederland in..."><br>
     <input id="submit_place" type="submit">
   </form>
  
