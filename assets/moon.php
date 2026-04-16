@@ -11,12 +11,12 @@
     
 <?php 
 
-$curl = curl_init();
+$curl_moon = curl_init();
 
-$cur_url = 'https://moon-phase.p.rapidapi.com/basic?lat='.$_GET['lat'].'&lon='.$_GET['long'];
+$cur_url_moon = 'https://moon-phase.p.rapidapi.com/basic?lat='.$_GET['lat'].'&lon='.$_GET['long'];
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => $cur_url,
+curl_setopt_array($curl_moon, array(
+  CURLOPT_URL => $cur_url_moon,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -30,12 +30,12 @@ curl_setopt_array($curl, array(
     ),
 ));
 
-$response = curl_exec($curl);
+$response_moon = curl_exec($curl_moon);
 
-$response = json_decode($response, true); 
+$response_moon = json_decode($response_moon, true); 
 
-$illumination_perc = (explode('%', $response['illumination'])[0]) / 100;
-$moon_stage = $response['stage'];
+$illumination_perc = (explode('%', $response_moon['illumination'])[0]) / 100;
+$moon_stage = $response_moon['stage'];
 
 
 echo '
