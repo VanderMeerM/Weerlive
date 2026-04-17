@@ -76,7 +76,7 @@ body input {
 
 .oval_shade {
   width: 30px;
-  background-color: white;
+  background-color: red; /* white; */
   z-index: 3;
  }
 
@@ -128,6 +128,10 @@ body input {
     padding: 10px 5px;
  }
 
+ .container_arrow {
+    width: 70%;
+ }
+ 
  .hour_forecast_container {
     overflow: auto;   
     margin: 1% 0;
@@ -299,6 +303,7 @@ form #kompas {
     max-width: 100px;
     max-height: 50px;
     position: relative;
+    padding: 50px;
 }
     
   
@@ -499,11 +504,7 @@ form #kompas {
         margin: 0;
     }
 
-    #arrow {
-        padding:50px;
-    }
-
-    #long_text {
+     #long_text {
         display: none;
     }
 

@@ -14,6 +14,8 @@
 $curl_moon = curl_init();
 
 $cur_url_moon = 'https://moon-phase.p.rapidapi.com/basic?lat='.$_GET['lat'].'&lon='.$_GET['long'];
+//$cur_url_moon = 'https://moon-phase.p.rapidapi.com/basic';
+
 
 curl_setopt_array($curl_moon, array(
   CURLOPT_URL => $cur_url_moon,
@@ -31,18 +33,29 @@ curl_setopt_array($curl_moon, array(
 ));
 
 $response_moon = curl_exec($curl_moon);
-
+    
 $response_moon = json_decode($response_moon, true); 
+
+/*
+print_r($response_moon = array (
+    
+    "phase_name" => "New Moon", 
+    "stage" => "waning",
+    "illumination" => "55%",
+    "days_until_next_full_moon" => 14,
+    "days_until_next_new_moon" => 0
+    )
+);
+*/
 
 $illumination_perc = (explode('%', $response_moon['illumination'])[0]) / 100;
 $moon_stage = $response_moon['stage'];
-
 
 echo '
 <div class="container_moon">
 <div class="moon"></div>';
 
-if ($illumination_perc < 50) {
+if ($illumination_perc < 0.5) {
 
    $moon_stage === 'waning' ? $shade_move = 50 + ($illumination_perc * 50):
    $shade_move = 50 - ($illumination_perc * 50);
@@ -52,7 +65,18 @@ echo '
 }
 
 else {
-    echo '<div class="oval_shade"></div>';
+
+echo 'test';
+
+  /*
+   $moon_stage === 'waning' ? $shade_move = 50 + ($illumination_perc * 50):
+   $shade_move = 50 - ($illumination_perc * 50);
+
+    echo '
+    <div class="shade" style=left:'. $shade_move .'px></div>
+    <div class="oval_shade"></div>';
+
+    */
 }
 
 echo '
