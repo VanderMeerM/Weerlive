@@ -22,18 +22,21 @@
 
 <body>
 
-<!-- To do
+
+<?php 
+/*
+To do
 
 sneeuwanimatie
 maan 
 tijden zonsopkomst/-ondergang
--->
 
-<!-- 
+
 Direct pagina laden bij aanklikken tabblad in browser en 
 elk kwartier pagina herladen om gegevens te updaten..
--->
+*/
 
+?>
 <script>
   document.addEventListener("visibilitychange", function() {
     
@@ -60,8 +63,6 @@ elk kwartier pagina herladen om gegevens te updaten..
 </script>
 
 <?php
-
-
 
 date_default_timezone_set('Europe/Amsterdam');
 
@@ -121,14 +122,14 @@ $wind_bft = $response['liveweer']['0']['windbft'];
 
 if ( ( (strtotime("now") < ($sunder_tstr + (60 * 15))) && ( (strtotime("now") - $sunder_tstr) > 0 ) )  || 
 
-( ($sup_tstr - strtotime("now") > (60 * 15)) && ($sup_tstr - strtotime("now") <= (60 * 30)) ) ) {
+     ( ($sup_tstr - strtotime("now") > 0) && ($sup_tstr - strtotime("now") <= (60 * 15)) ) ) {
 
   $bgr_picture = '15';
 }
 
 else if ( ( (strtotime("now") < ($sunder_tstr + (60 * 30))) && ( (strtotime("now") - $sunder_tstr) > 0 ) )  || 
 
-    ( ($sup_tstr - strtotime("now") > 0) && ($sup_tstr - strtotime("now") <= (60 * 15)) ) ) {
+( ($sup_tstr - strtotime("now") > (60 * 15)) && ($sup_tstr - strtotime("now") <= (60 * 30)) ) ) {
 
   $bgr_picture = '30';
 }

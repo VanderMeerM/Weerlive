@@ -3,8 +3,10 @@
 
 include ('./assets/variables.php');
 
-// Tijdstip zonsopgang en -ondergang naar timestamp converteren om maan wel/niet te tonen
-// (voor zonsopgang danwel na zonsondergang)..
+/* 
+Tijdstip zonsopgang en -ondergang naar timestamp converteren om maan wel/niet te tonen
+(voor zonsopgang danwel na zonsondergang)..
+*/
 
 $hour_sup = explode(':', $response['liveweer'][0]['sup'])[0];
 $min_sup = explode(':', $response['liveweer'][0]['sup'])[1];
@@ -53,15 +55,16 @@ if ($response['liveweer'][0]['image'] === 'sneeuw') {
 
 echo '
 <script>
-console.log("Het sneeuwt!");
+snowStorm();
 </script>';
 }
 //snowStorm() werkt (nog) niet..
 
 //<div class="empty_block_up"></div>
 
+// Wit font bij tonen maan 
 echo '
-<div class="temperature_now"> 
+<div class="temperature_now">
 
 <table>
 <tr>
@@ -69,8 +72,6 @@ echo '
  <div id="location" 
  ' . ((strtotime("now") > ($sunder_tstr + (60 * 30)) ) ||  (strtotime("now") < ($sup_tstr - (60 * 30)) ) ? 'style="color: white"' : null) . '
  >' . $response['liveweer'][0]['plaats'] . '</div>';
-
- // '. ($_GET['id'] ? 'style="display:flex"' : null) . '
 
 if (!$_GET['plaats']) {
   echo '<div id="gps"
