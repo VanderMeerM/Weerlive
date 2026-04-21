@@ -27,9 +27,9 @@
 /*
 To do
 
+tijden zonsopkomst/-ondergang v 
 sneeuwanimatie
 maan 
-tijden zonsopkomst/-ondergang
 
 
 Direct pagina laden bij aanklikken tabblad in browser en 
@@ -353,9 +353,12 @@ echo '
 </div>
 </div>';
 
-// mailen bij 50 resterende requests..
+// mailen bij 10,25 of 50 resterende requests..
 
-if ($response['api'][0]['rest_verz'] == 50) {
+$num_for_mail = [10,25,50];
+$rest_verz = $response['api'][0]['rest_verz'];
+
+if (in_array($rest_verz, $num_for_mail)) {
 include('./send_mail_rest_num.php');
 }
 

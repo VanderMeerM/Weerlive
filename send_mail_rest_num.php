@@ -39,9 +39,9 @@ try{
    // $mail->addBCC('bcc@example.com');
 
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Aantal requests weersite';
+    $mail->Subject = 'Aantal requests weersite: '.$rest_verz.'';
     $mail->Body    = 
-    'Het aantal requests op de <a href="https://www.marcelvandermeer.eu/weer/"> weersite </a> bedraagt nog 50.'; 
+    'Het aantal requests op de <a href="https://www.marcelvandermeer.eu/weer/"> weersite </a> bedraagt nog '.$rest_verz.'.'; 
      //'This is the HTML message body <b>in bold!</b>';
    // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
