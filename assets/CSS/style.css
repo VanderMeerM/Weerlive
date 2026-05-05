@@ -58,6 +58,23 @@ body input {
     position: relative;
     }
 
+ .moon {
+   display: flex;
+  justify-content: center;
+}
+
+.first_quarter, 
+.last_quarter {
+    height: 50px;
+    width: 25px;
+    border-radius: 0 50px 50px 0;
+    background-color: blue;
+}
+
+.last_quarter {
+    border-radius: 50px 0 0 50px;
+}
+
 .moon, 
 .shade, 
 .oval_shade {
@@ -75,11 +92,10 @@ body input {
  }
 
 .oval_shade {
-  width: 30px;
   background-color: red; /* white; */
-  z-index: 3;
  }
 
+ /*
  .last_quarter {
     transform: translate(25px);
     border-radius: 0 20px 20px 0;
@@ -89,6 +105,7 @@ body input {
     transform: translate(-25px);
     border-radius: 20px 0 0 20px;
 }
+    */
 
 /* Einde maan */
 
@@ -197,10 +214,6 @@ table {
     width: 300px;
 }
 
-.moon {
-    display: flex;
-    justify-content: center;
-}
 
 #current_temperature, 
 #minmax_temperature, 
