@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maantest</title>
-   <link rel="stylesheet" href="./CSS/style.css">
-
-</head>
-<body>
-    
+   
 <?php 
 
 $curl_moon = curl_init();
 
-//$cur_url_moon = 'https://moon-phase.p.rapidapi.com/basic?lat='.$_GET['lat'].'&lon='.$_GET['long'];
-$cur_url_moon = 'https://moon-phase.p.rapidapi.com/basic';
+$cur_url_moon = 'https://moon-phase.p.rapidapi.com/basic?lat='.$_GET['lat'].'&lon='.$_GET['long'];
+//$cur_url_moon = 'https://moon-phase.p.rapidapi.com/basic';
 
 
 curl_setopt_array($curl_moon, array(
@@ -36,63 +26,77 @@ $response_moon = curl_exec($curl_moon);
     
 $response_moon = json_decode($response_moon, true); 
 
-print_r($response_moon);
+//print_r($response_moon);
 
 /*
 print_r($response_moon = array (
     
-    "phase_name" => "New Moon", 
+    "phase_name" => "Waning gibbous", 
     "stage" => "waning",
-    "illumination" => "55%",
-    "days_until_next_full_moon" => 14,
-    "days_until_next_new_moon" => 0
+    "illumination" => "82%",
+    "days_until_next_full_moon" => 25,
+    "days_until_next_new_moon" => 10
     )
 );
 */
 
 $illumination_perc = (explode('%', $response_moon['illumination'])[0]) / 100;
 $moon_stage = $response_moon['stage'];
+$phase_name = $response_moon['phase_name'];
+$moon_width = 50;
 
 echo '
 <div class="container_moon">';
-//<div class="moon"></div>';
 
-if ($illumination_perc < 0.5) {
+if ($phase_name === 'Full Moon') {
 
-   $moon_stage === 'waning' ? $shade_move = 50 + ($illumination_perc * 50):
-   $shade_move = 50 - ($illumination_perc * 50);
+   echo '<div class="moon"></div>';
+}
+
+elseif ($illumination_perc < 0.5) {
+
+   $moon_stage === 'waning' ? $shade_move = $moon_width  + ($illumination_perc * $moon_width ):
+   $shade_move = 50 - ($illumination_perc * $moon_width );
 
 echo '
 <div class="moon"></div>
 <div class="shade" style=left:'. $shade_move .'px></div>';
 }
 
-else { 
+else {  // verlichting > 0,5 
 
-echo '<div class="last_quarter">';
-  
-// van volle maan naar laatste kwartier 
-// ovaal van breedte 50px naar 0 px; 
-//left van 50 naar 25 px
+/* van volle maan naar laatste kwartier 
+verlichting van 1 naar 0,5
+ovaal van breedte 25 naar 0px; 
+right van 25 naar 50 px v
+*/
 
-   if($moon_stage === 'waning') {
-    $move_oval = ($illumination_perc * 25) + 25;
-    $width_oval = $illumination_perc * 50;
-      echo '<div class="oval_shade" style=left:'.$move_oval.'px; width: '.$width_oval.'px></div>';
+/* van eerste kwartier naar volle maan 
+verlichting van 0,5 naar 1
+ovaal van breedte 25 naar 0px; 
+right van 0 naar 25 px 
+*/
+   $width_oval = ($illumination_perc * $moon_width ) - ($moon_width / 2);
+
+   if ($moon_stage === 'waning') {
+    
+    echo '<div class="last_quarter">';
+   
+    $move_oval = ($moon_width * 0.5) - ($illumination_perc * $moon_width);
+   
+     echo '<div class="first_quarter" style="right:'.$move_oval.'px; width: '.$width_oval.'px"></div>';
+
    }
    else {
-    echo 'test';
-   } 
-   /*? $shade_move = 50 + ($illumination_perc * 50):
-   $shade_move = 50 - ($illumination_perc * 50);
 
-   // echo '<div class="shade" style=left:'. $shade_move .'px></div>
-  echo '<div class="oval_shade"></div>';
-*/
+    echo '<div class="first_quarter">';
+
+    $move_oval =  ($illumination_perc * $moon_width) - ($moon_width / 2);
+   
+    echo '<div class="last_quarter" style="right:'.$move_oval.'px; width: '.$width_oval.'px"></div>';
+
+   } 
    }
 
 ?> 
-</div>
 
-</body>
-</html>

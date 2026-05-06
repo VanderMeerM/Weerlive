@@ -28,8 +28,8 @@
 To do
 
 tijden zonsopkomst/-ondergang v 
+maan v
 sneeuwanimatie
-maan 
 
 
 Direct pagina laden bij aanklikken tabblad in browser en 
