@@ -30,11 +30,13 @@ To do
 tijden zonsopkomst/-ondergang v 
 maan v
 sneeuwanimatie
-
-
-Direct pagina laden bij aanklikken tabblad in browser en 
-elk kwartier pagina herladen om gegevens te updaten..
 */
+
+
+
+//Direct pagina laden bij aanklikken tabblad in browser en 
+//elk kwartier pagina herladen om gegevens te updaten..
+ 
 
 ?>
 <script>
