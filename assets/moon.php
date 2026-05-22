@@ -3,9 +3,13 @@
 
 $curl_moon = curl_init();
 
+if ($_GET['plaats']) {
+ $cur_url_moon = 'https://moon-phase.p.rapidapi.com/basic?lat=52.1015474&lon=5.1754243';
+  
+}
+else {
 $cur_url_moon = 'https://moon-phase.p.rapidapi.com/basic?lat='.$_GET['lat'].'&lon='.$_GET['long'];
-//$cur_url_moon = 'https://moon-phase.p.rapidapi.com/basic';
-
+}
 
 curl_setopt_array($curl_moon, array(
   CURLOPT_URL => $cur_url_moon,
@@ -45,12 +49,23 @@ $moon_stage = $response_moon['stage'];
 $phase_name = $response_moon['phase_name'];
 $moon_width = 50;
 
+echo $phase_name;
+
 echo '
 <div class="container_moon">';
 
 if ($phase_name === 'Full Moon') {
 
    echo '<div class="moon"></div>';
+}
+
+elseif ($phase_name === 'First quarter') {
+    echo '<div class="first_quarter"></div>';
+}
+
+
+elseif ($phase_name === 'Last quarter') {
+    echo '<div class="last_quarter"></div>';
 }
 
 elseif ($illumination_perc < 0.5) {
