@@ -106,7 +106,7 @@ right van 0 naar 25 px
 
     echo '<div class="first_quarter">';
 
-    $move_oval =  ($illumination_perc * $moon_width) - ($moon_width / 2);
+    $move_oval =  25; // - (($illumination_perc * $moon_width) - ($moon_width / 2));
    
     echo '<div class="last_quarter" style="right:'.$move_oval.'px; width: '.$width_oval.'px"></div>';
 
