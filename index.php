@@ -160,8 +160,12 @@ echo '
 <div class="container_sun">
 
 <div class="sunriseset">
-<div id="sunrise"><img src="./assets/pics/zonsopkomst.png">  ' . $response['liveweer'][0]['sup'] . '</div>
-<div id="sunset"><img src="./assets/pics/zonsondergang.png"> ' . $response['liveweer'][0]['sunder'] . '</div>
+<div id="sunrise">
+<img src="./assets/pics/zonsopkomst.png"><img id="little_arrow_up" src="./assets/pics/arrow.png">  
+' . $response['liveweer'][0]['sup'] . '</div>
+
+<div id="sunset"><img src="./assets/pics/zonsondergang.png"><img id="little_arrow_down" src="./assets/pics/arrow.png"> 
+' . $response['liveweer'][0]['sunder'] . '</div>
 </div>';
 
 $turndegr = floatval($response['liveweer']['0']['windrgr'])+90;

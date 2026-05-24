@@ -153,7 +153,21 @@ body input {
  #sunrise, 
  #sunset {
     padding: 10px 5px;
+    position: relative;
  }
+
+#little_arrow_up, 
+#little_arrow_down {
+ position: absolute;
+ width: 15px;
+ left: 30%;
+ transform: rotate(-90deg);
+ top: 45%;
+}
+
+#little_arrow_down {
+    transform: rotate(90deg);
+}
 
  .container_arrow {
     width: 70%;
