@@ -1,7 +1,7 @@
 
 :root {
-     --gray1: rgb(98 108 116); /* rgb(106, 181, 241); */
-     --gray2: #ababab; /* #494fc9; */
+     --gray1: rgb(98 108 116); 
+     --gray2: #ababab; 
      --black: #000;
      --white: #fff;
      --moon_width : 50px;
@@ -50,7 +50,7 @@ body input {
     margin:auto;
 }
 
-/* mbt maan */
+/* Begin mbt maan */
 
   .container_moon {
     display: flex;
@@ -79,12 +79,6 @@ body input {
    
 }
 
-/*
-.first_quarter {
-    background-color: red;
-}
-    */
-
 .moon, 
 .shade, 
 .oval_shade {
@@ -105,17 +99,6 @@ body input {
   background-color: var(--white);
  }
 
- /*
- .last_quarter {
-    transform: translate(25px);
-    border-radius: 0 20px 20px 0;
-}
-
-.first_quarter {
-    transform: translate(-25px);
-    border-radius: 20px 0 0 20px;
-}
-    */
 
 /* Einde maan */
 
@@ -198,12 +181,12 @@ body input {
 
 
 .main {
-    height: 1140px; 
+    /*height: 1140px; */
     max-width: 1450px;
     text-align: center;
     display: flex;
     flex-direction: column;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y; 
     background-position: center;
    
 }
@@ -289,12 +272,6 @@ text-align: left;
     font-size: 12px;
     text-align: center;
 }
-
-/*
-#moon {
-    margin-top: 10px;
- }
-*/      
 
 .main #input, 
 .main #location {
@@ -392,22 +369,26 @@ form #kompas {
   }
 
   #overlay_ww {
-    height: 50%;
-    bottom: 25%;
-    background-color: rgb(139 135 135 / 80%);
+    height: 80%;
+    bottom: 10%;   
 }
   
   #text_about, 
   #long_text_ww {
     position: absolute;
-    /*background-image: url('./pics/artikel_aankondiging_small.png');*/
+     background-color: rgb(139 135 135 / 80%);
     top: 45%;
-    left: 50%;
+    height: fit-content;
+    left: 60%;
     line-height: 1;
     font-family: 'Comic Neue', cursive;
-    color: var(--white);
+    color: var(--white); 
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
+  }
+
+  #long_text_ww {
+    line-height: 1.2;
   }
 
 
@@ -441,7 +422,8 @@ form #kompas {
   @media (max-width: 1000px) {
 
    
-        #text_about{
+        #text_about, 
+        #long_text_ww{
             font-size: small;
              top: 50%;
              left: 55%;
@@ -462,17 +444,11 @@ form #kompas {
 
 @media (max-width: 900px) {
        
-  /*  #input, #location {
-    text-align: left;
-    margin-left: 20px;
-        }
-*/
     #input {
            margin-bottom: 10px;
           }
 
     #location {
-           /* margin: 0 10px; */
             text-align: center;
         }
 
@@ -507,9 +483,10 @@ form #kompas {
         top: 0%;
     }
             
-     #text_about{
+     #text_about, 
+     #long_text_ww {
        position: absolute;
-       font-size: normal;
+       padding: 2%;
        top: 50%;
        left: 50%;
        transform: translate(-50%,-50%);
@@ -529,8 +506,9 @@ form #kompas {
     }
 @media (max-width: 500px) { 
     
-    #text_about {
-        font-size: large;
+    #text_about, 
+    #long_text_ww {
+        font-size: 15px;
     }
     .container_details {
         flex-direction: column;
@@ -549,6 +527,14 @@ form #kompas {
         display: block;
     }
 
+}
+
+@media (max-width: 500px) and (max-height: 920px) { 
+
+     #text_about, 
+     #long_text_ww {
+        font-size: 12px;
+    }
 }
 
        
