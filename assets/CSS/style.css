@@ -350,6 +350,10 @@ form #kompas {
     font-size: 15px;
 }
 
+#about:hover {
+    cursor: pointer;
+}
+
 #last_update {
     text-align: right;
     margin-right: 5px;
